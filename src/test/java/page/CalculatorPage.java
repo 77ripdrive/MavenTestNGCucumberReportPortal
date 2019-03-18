@@ -197,17 +197,14 @@ public  class CalculatorPage extends AbstractPage {
         String mailTotalEstimateCost = mailTotalEstCost.getText();
         return mailTotalEstimateCost;
     }
-    public void closeHardCoreTest(){
+    public void closeTenMinuteEmail(){
         this.driver.switchTo().defaultContent();
         this.driver.close();
         switchingBetweenWindow();
-        this.driver.close();
-    }
-    public void closeTestWintow(){
-        this.driver.close();
+
     }
 
-    @Override
+      @Override
     protected CalculatorPage openPage() {
         driver.navigate().to(BASE_URL);
         logger.info("Pricing page opened");
