@@ -13,7 +13,7 @@ public class PricingPage extends AbstractPage {
     private final String BASE_URL = "https://cloud.google.com/pricing/";
 
     @FindBy(xpath = "//*[@id='cloud-site']//a[@track-name='pricingNav/calculators']")
-    private WebElement pricingNavigationCalculators;
+    public WebElement pricingNavigationCalculators;
 
 
     public CalculatorPage pushPricingNavigationCalculators(){

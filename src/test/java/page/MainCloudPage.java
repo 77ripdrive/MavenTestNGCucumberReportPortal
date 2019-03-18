@@ -6,13 +6,15 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class MainCloudPage extends AbstractPage {
 
     private final String BASE_URL = "https://cloud.google.com/";
 
     @FindBy(xpath = "//a[@track-name='exploreProducts']")
-    private WebElement exploreAllProductsButton;
+    public WebElement exploreAllProductsButton;
 
 
     public MainCloudPage(WebDriver driver) {
@@ -20,7 +22,8 @@ public class MainCloudPage extends AbstractPage {
         PageFactory.initElements(this.driver, this);
     }
     public ProductsPage pushExploreAllProducts(){
-
+        new WebDriverWait(driver,10)
+                .until(ExpectedConditions.visibilityOf(exploreAllProductsButton));
         exploreAllProductsButton.click();
         return new ProductsPage(driver);
     }
