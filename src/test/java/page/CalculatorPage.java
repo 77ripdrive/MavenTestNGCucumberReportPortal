@@ -30,13 +30,19 @@ public  class CalculatorPage extends AbstractPage {
     @FindBy(xpath = "//*[@id='select_option_48']/div[1]")
     public WebElement choiceFree;
 
+    @FindBy(xpath = "//*[@id='select_value_label_41']/span[2]")
+    public WebElement vmClassField;
+
+    @FindBy(xpath = "//*[@id='select_option_60']/div[1]")
+    public WebElement choiceRegular;
+
     @FindBy(id = "select_value_label_42")
     public WebElement popUpInstanceType;
 
     @FindBy(xpath = "//*[@id='select_option_70']/div[1]")
     public WebElement selectInstanceTypeNOneStandard;
 
-    @FindBy(xpath = "//div[@class='md-icon']/..")
+    @FindBy(xpath = "//*[@aria-label='Add GPUs']")
     public WebElement ripplyAddGpus;
 
     @FindBy(xpath = "//md-select-value[@id='select_value_label_327']")
@@ -127,6 +133,8 @@ public  class CalculatorPage extends AbstractPage {
         instancesForField.sendKeys("");
         operatingSystem.click();
         choiceFree.click();
+        vmClassField.click();
+        choiceRegular.click();
         popUpInstanceType.click();
         selectInstanceTypeNOneStandard.click();
         ripplyAddGpus.click();
