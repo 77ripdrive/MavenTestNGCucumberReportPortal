@@ -27,7 +27,7 @@ public  class CalculatorPage extends AbstractPage {
     @FindBy(xpath = "//input[@id='input_47']")
     public WebElement instancesForField;
 
-    @FindBy(xpath = "///*[@id='select_value_label_40']")
+    @FindBy(xpath = "//*[@id='select_value_label_40']")
     public WebElement operatingSystem;
 
     @FindBy(xpath = "//*[@id='select_option_48']/div[1]")
