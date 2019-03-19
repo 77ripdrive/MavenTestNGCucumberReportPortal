@@ -1,5 +1,6 @@
 package page;
 
+import model.UserCase;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -8,12 +9,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import service.UserCaseCreator;
 
 import java.util.concurrent.TimeUnit;
 
 public  class CalculatorPage extends AbstractPage {
     private final Logger logger = LogManager.getRootLogger();
     private final String BASE_URL = "https://cloud.google.com/products/calculator/";
+    UserCaseCreator userCaseCreator;
 
     @FindBy(xpath = "//div[@class='tab-holder compute' and @title='Compute Engine']")
     public WebElement computeEngineOn;
