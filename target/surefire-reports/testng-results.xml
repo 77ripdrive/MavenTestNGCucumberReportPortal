@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="6" passed="6">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Surefire suite" duration-ms="58154" started-at="2019-03-19T18:13:51Z" finished-at="2019-03-19T18:14:49Z">
+    <groups>
+    </groups>
+    <test name="Surefire test" duration-ms="58154" started-at="2019-03-19T18:13:51Z" finished-at="2019-03-19T18:14:49Z">
+      <class name="test.TestHardCore">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:test.TestHardCore@68837a77]" name="setUp" is-config="true" duration-ms="55853" started-at="2019-03-19T18:13:51Z" finished-at="2019-03-19T18:14:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="checkClassVMFromEstimate()[pri:1, instance:test.TestHardCore@68837a77]" name="checkClassVMFromEstimate" duration-ms="686" started-at="2019-03-19T18:14:47Z" finished-at="2019-03-19T18:14:48Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- checkClassVMFromEstimate -->
+        <test-method status="PASS" signature="checkInstanceTypeFromEstimate()[pri:2, instance:test.TestHardCore@68837a77]" name="checkInstanceTypeFromEstimate" duration-ms="245" started-at="2019-03-19T18:14:48Z" finished-at="2019-03-19T18:14:48Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- checkInstanceTypeFromEstimate -->
+        <test-method status="PASS" signature="checkRegoinFromEstimate()[pri:3, instance:test.TestHardCore@68837a77]" name="checkRegoinFromEstimate" duration-ms="108" started-at="2019-03-19T18:14:48Z" finished-at="2019-03-19T18:14:48Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- checkRegoinFromEstimate -->
+        <test-method status="PASS" signature="checkLocalSSDFromEstimate()[pri:4, instance:test.TestHardCore@68837a77]" name="checkLocalSSDFromEstimate" duration-ms="102" started-at="2019-03-19T18:14:48Z" finished-at="2019-03-19T18:14:48Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- checkLocalSSDFromEstimate -->
+        <test-method status="PASS" signature="checkCommitmentFromEstimate()[pri:5, instance:test.TestHardCore@68837a77]" name="checkCommitmentFromEstimate" duration-ms="81" started-at="2019-03-19T18:14:48Z" finished-at="2019-03-19T18:14:48Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- checkCommitmentFromEstimate -->
+        <test-method status="PASS" signature="checkTotalCoastFromEstimate()[pri:6, instance:test.TestHardCore@68837a77]" name="checkTotalCoastFromEstimate" duration-ms="79" started-at="2019-03-19T18:14:48Z" finished-at="2019-03-19T18:14:48Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- checkTotalCoastFromEstimate -->
+        <test-method status="PASS" signature="stopBrowser()[pri:0, instance:test.TestHardCore@68837a77]" name="stopBrowser" is-config="true" duration-ms="933" started-at="2019-03-19T18:14:48Z" finished-at="2019-03-19T18:14:49Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- stopBrowser -->
+      </class> <!-- test.TestHardCore -->
+    </test> <!-- Surefire test -->
+  </suite> <!-- Surefire suite -->
+</testng-results>

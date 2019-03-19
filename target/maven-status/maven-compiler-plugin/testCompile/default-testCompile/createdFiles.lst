@@ -1,0 +1,12 @@
+page\PricingPage.class
+test\TestHardCore.class
+test\CommonConditions.class
+page\ProductsPage.class
+page\CalculatorPage.class
+service\UserCaseCreator.class
+util\TestListener.class
+service\TestDataReader.class
+page\MainCloudPage.class
+driver\DriverSingleton.class
+model\UserCase.class
+page\AbstractPage.class
