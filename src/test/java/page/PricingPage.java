@@ -21,13 +21,13 @@ public class PricingPage extends AbstractPage {
         return new CalculatorPage(driver);
     }
 
-    protected PricingPage(WebDriver driver) {
+    public PricingPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(this.driver, this);
     }
 
     @Override
-    protected PricingPage openPage() {
+    public PricingPage openPage() {
         driver.navigate().to(BASE_URL);
         logger.info("Pricing page opened");
         return this;

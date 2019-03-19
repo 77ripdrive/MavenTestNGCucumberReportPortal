@@ -115,11 +115,10 @@ public  class CalculatorPage extends AbstractPage {
     public WebElement mailTotalEstCost;
 
 
-    protected CalculatorPage(WebDriver driver) {
+    public CalculatorPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(this.driver, this);
     }
-
 
     public CalculatorPage setDataToCalculationTable() {
         driver.switchTo().frame(switchOnIframe);
@@ -205,7 +204,7 @@ public  class CalculatorPage extends AbstractPage {
     }
 
       @Override
-    protected CalculatorPage openPage() {
+    public CalculatorPage openPage() {
         driver.navigate().to(BASE_URL);
         logger.info("Pricing page opened");
         return this;

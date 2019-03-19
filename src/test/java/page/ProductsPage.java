@@ -23,13 +23,13 @@ public class ProductsPage extends AbstractPage {
     }
 
 
-    protected ProductsPage(WebDriver driver) {
+    public ProductsPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(this.driver, this);
     }
 
     @Override
-    protected ProductsPage openPage() {
+    public ProductsPage openPage() {
         driver.navigate().to(BASE_URL);
         logger.info("Products page opened");
         return this;
