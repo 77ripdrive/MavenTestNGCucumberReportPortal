@@ -207,6 +207,7 @@ public  class CalculatorPage extends AbstractPage {
 
     public String getTotalEstimateCostFromTenMinute() {
         String mailTotalEstimateCost = mailTotalEstCost.getText();
+        logger.info("Email from GoogleCloud with Total Coast");
         return mailTotalEstimateCost;
     }
     public void closeTenMinuteEmail(){
