@@ -4,19 +4,6 @@ import model.UserCase;
 
 public class UserCaseCreator {
 
-//     numberOfInstance,selectNOfInstance;
-//  private String whatInstunceFor,selectwInstunceFor;
-//  private String softWare,selectSoftWareType;
-//  private String vMClass,selectTypeVM;
-//  private String instanceType,selectInstanceType;
-//  private String addGPy;
-//  private String numberGPU,selectNumberGPU;
-//  private String gPUType,selectGPU;
-//  private String localSSD,selectLocalSSD;
-//  private String dataCenterLocation,selectDadaCenterLocation;
-//  private String commitedUsage,selectCommitedUsage;
-//    }
-
     public static final String NUMBER_OF_INCTANCE="numberOfInstance",SELECT_N_OF_INSTANCE="selectNOfInstance";
     public static final String WHAT_INSTANCE_FOR="whatInstunceFor",SELECT_W_INSTANCE_FOR="selectwInstunceFor";
     public static final String SOFTWARE="softWare",SELECT_SOFT_WARE_TYPE="selectSoftWareType";

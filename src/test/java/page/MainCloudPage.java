@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class MainCloudPage extends AbstractPage {
-
+    Actions actions = new Actions(driver);
     public final String BASE_URL = "https://cloud.google.com/";
     private final Logger logger = LogManager.getRootLogger();
     @FindBy(xpath = "//a[@track-name='exploreProducts']")
@@ -24,8 +24,9 @@ public class MainCloudPage extends AbstractPage {
         PageFactory.initElements(this.driver, this);
     }
     public ProductsPage pushExploreAllProducts(){
-        new WebDriverWait(driver,10)
-                .until(ExpectedConditions.visibilityOf(exploreAllProductsButton));
+        actions.moveToElement(exploreAllProductsButton);
+//        new WebDriverWait(driver,10)
+//                .until(ExpectedConditions.visibilityOf(exploreAllProductsButton));
         exploreAllProductsButton.click();
         return new ProductsPage(driver);
     }

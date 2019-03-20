@@ -2,10 +2,6 @@ package test;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import page.CalculatorPage;
-import page.MainCloudPage;
-import page.PricingPage;
-import page.ProductsPage;
 
 public class TestHardCore extends CommonConditions {
 
@@ -45,14 +41,14 @@ public class TestHardCore extends CommonConditions {
     public void checkTotalCoastFromEstimate() {
         Assert.assertEquals(calculatorPage.getTotalEstimatedCost(), totalEstimatedCost);
     }
-//    @Test(priority = 7)
-//    public void checkTotalCoastEstimateFromTenMinuteEmail(){
-//        String totalEstimateTable=calculatorPage.getTotalEstimatedCost();
-//        calculatorPage.nextStepToGetMailWithEstimateCost();
-//        String coastFromEmail=calculatorPage.getTotalEstimateCostFromTenMinute();
-//        Assert.assertTrue(totalEstimateTable.contains(String.valueOf(coastFromEmail)));
-//        calculatorPage.closeTenMinuteEmail();
-//}
+    @Test(priority = 7)
+    public void checkTotalCoastEstimateFromTenMinuteEmail(){
+        String totalEstimateTable=calculatorPage.getTotalEstimatedCost();
+        calculatorPage.nextStepToGetMailWithEstimateCost();
+        String coastFromEmail=calculatorPage.getTotalEstimateCostFromTenMinute();
+        Assert.assertTrue(totalEstimateTable.contains(String.valueOf(coastFromEmail)));
+        calculatorPage.closeTenMinuteEmail();
+}
 
 
 
