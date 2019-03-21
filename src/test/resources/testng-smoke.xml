@@ -3,7 +3,7 @@
 <suite name="Smoke" verbose="1" >
     <test name="TestHardCore"   >
         <classes>
-            <class name="test.TestHardCore" />
+            <class name="test.VerificationOfUserDataEnteredInTheCalculationPage" />
         </classes>
     </test>
 </suite>
