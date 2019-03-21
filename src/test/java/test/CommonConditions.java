@@ -3,10 +3,7 @@ package test;
 import driver.DriverSingleton;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
-import page.CalculatorPage;
-import page.MainCloudPage;
-import page.PricingPage;
-import page.ProductsPage;
+import page.*;
 import util.TestListener;
 
 @Listeners({TestListener.class})
@@ -17,7 +14,8 @@ public class CommonConditions {
     protected ProductsPage productsPage;
     protected PricingPage pricingPage;
     protected CalculatorPage calculatorPage;
-    protected String startUrl = "https://cloud.google.com";
+    protected TenMinuteMailPage tenMinuteMailPage;
+
     @BeforeTest()
     public void setUp()
     {   driver = DriverSingleton.getDriver();
@@ -25,15 +23,12 @@ public class CommonConditions {
         productsPage=new ProductsPage(driver);
         pricingPage=new PricingPage(driver);
         calculatorPage=new CalculatorPage(driver);
-        driver.get(startUrl);
         mainCloudPage.openPage();
-        mainCloudPage.pushExploreAllProducts();
-        productsPage.openPage();
-        productsPage.pushSeePrising();
-        pricingPage.openPage();
-        pricingPage.pushPricingNavigationCalculators();
-        calculatorPage.openPage();
-        calculatorPage.setDataToCalculationTable();
+        mainCloudPage.pushExploreAllProducts()
+                .pushSeePrising()
+                .pushPricingNavigationCalculators()
+                .addToEstimate();
+
     }
 
     @AfterTest(alwaysRun = true)

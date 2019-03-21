@@ -17,6 +17,7 @@ public class PricingPage extends AbstractPage {
 
 
     public CalculatorPage pushPricingNavigationCalculators(){
+        logger.info("Pricing page opened");
         pricingNavigationCalculators.click();
         return new CalculatorPage(driver);
     }
@@ -27,9 +28,8 @@ public class PricingPage extends AbstractPage {
     }
 
     @Override
-    public PricingPage openPage() {
+    public void openPage() {
         driver.navigate().to(BASE_URL);
-        logger.info("Pricing page opened");
-        return this;
+
     }
 }
