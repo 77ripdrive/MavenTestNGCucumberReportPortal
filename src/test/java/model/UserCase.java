@@ -42,21 +42,21 @@ public class UserCase {
 
     public String getWhatInstunceFor() {    return whatInstunceFor;    }
 
-    public String getSoftWare() {     return softWare;    }
+    public final String getSoftWare() {     return softWare;    }
 
-    public String getvMClass() {      return vMClass;    }
+    public final String getvMClass() {      return vMClass;    }
 
-    public String getInstanceType() {  return instanceType; }
+    public final String getInstanceType() {  return instanceType; }
 
-    public String getNumberGPU() {    return numberGPU;   }
+    public final String getNumberGPU() {    return numberGPU;   }
 
-    public String getgPUType() {    return gPUType;   }
+    public final String getgPUType() {    return gPUType;   }
 
-    public String getLocalSSD() {   return localSSD;   }
+    public final String getLocalSSD() {   return localSSD;   }
 
-    public String getDataCenterLocation() {  return dataCenterLocation;    }
+    public final String getDataCenterLocation() {  return dataCenterLocation;    }
 
-    public String getCommitedUsage() {     return commitedUsage;    }
+    public final String getCommitedUsage() {     return commitedUsage;    }
 
     @Override
     public String toString() {

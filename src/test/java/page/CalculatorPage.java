@@ -12,7 +12,6 @@ import org.openqa.selenium.support.PageFactory;
 import service.UserCaseCreator;
 
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
 public  class CalculatorPage extends AbstractPage {
     private final Logger logger = LogManager.getRootLogger();
@@ -27,65 +26,92 @@ public  class CalculatorPage extends AbstractPage {
     UserCase userCase=UserCaseCreator.withCredentialsFromProperty();
 
     @FindBy(xpath = "//div[@class='tab-holder compute' and @title='Compute Engine']")
-    public WebElement computeEngineOn;
+    protected WebElement computeEngineOn;
+
     @FindBy(id = "input_46")
-    public WebElement numberOfInstans;
+    protected WebElement numberOfInstans;
+
     @FindBy(xpath = "//input[@id='input_47']")
-    public WebElement instancesForField;
+    protected WebElement instancesForField;
+
     @FindBy(xpath = "//*[@id='select_value_label_40']")
-    public WebElement operatingSystem;
+    protected WebElement operatingSystem;
+
     @FindBy(xpath = "//*[@id='select_value_label_41']/span[2]")
-    public WebElement vmClassField;
-    @FindBy(xpath = "//*[@id='select_option_60']/div[1]")
-    public WebElement choiceRegular;
+    protected WebElement vmClassField;
+
     @FindBy(id = "select_value_label_42")
-    public WebElement popUpInstanceType;
+    protected WebElement dropDownInstanceType;
+
     @FindBy(xpath = "//*[@aria-label='Add GPUs']")
-    public WebElement ripplyAddGpus;
+    protected WebElement ripplyAddGpus;
+
     @FindBy(xpath = "//md-select-value[@id='select_value_label_327']")
-    public WebElement selectValueNumberOfGpus;
+    protected     WebElement selectValueNumberOfGpus;
+
     @FindBy(xpath = "//*[@id='select_value_label_328']/span[1]")
-    public WebElement selectGpuType;
+    protected WebElement selectGpuType;
+
     @FindBy(id = "select_value_label_43")
-    public WebElement selectLocalSsd;
+    protected WebElement selectLocalSsd;
+
     @FindBy(id = "select_value_label_44")
-    public WebElement selectDataCenterLocation;
+    protected WebElement selectDataCenterLocation;
+
     @FindBy(id = "select_value_label_45")
-    public WebElement selectCommitedUsage;
+    protected WebElement selectCommitedUsage;
+
+    @FindBy(id = "select_option_100")
+    protected WebElement selectCommitedUsageOneYear;
+
+    @FindBy(id = "select_option_101")
+     protected WebElement selectCommitedUsageThreeYear;
+
     @FindBy(xpath = "//form/div[11]/button[@aria-label='Add to Estimate']")
-    public WebElement clickButtonAddToEstimate;
+    protected WebElement clickButtonAddToEstimate;
+
     @FindBy(xpath = "//h2[@class='md-title']/b[@class='ng-binding']")
-    public WebElement tableTotalEstimateCost;
+    protected WebElement tableTotalEstimateCost;
+
     @FindBy(xpath = "(//div[@class='md-list-item-text ng-binding'])[2]")
-    public WebElement tatbleVMClass;
+    protected WebElement tatbleVMClass;
+
     @FindBy(xpath = "(//div[@class='md-list-item-text ng-binding'])[3]")
-    public WebElement tableInstanceType;
+    protected WebElement tableInstanceType;
+
     @FindBy(xpath = "(//div[@class='md-list-item-text ng-binding'])[4]")
-    public WebElement tableRegin;
+    protected WebElement tableRegin;
+
     @FindBy(xpath = "(//div[@class='md-list-item-text ng-binding'])[5]")
-    public WebElement tableLocalSsd;
+    protected WebElement tableLocalSsd;
+
     @FindBy(xpath = "(//div[@class='md-list-item-text ng-binding'])[6]")
-    public WebElement tableCommitmentTerm;
+    protected WebElement tableCommitmentTerm;
+
     @FindBy(xpath = "//*[@class='cp-header']//iframe")
-    public WebElement switchOnIframe;
+    protected WebElement switchOnIframe;
+
     @FindBy(xpath = "//*[@id='idIframe']")
-    public WebElement switchOnIframeCalculator;
+    protected WebElement switchOnIframeCalculator;
+
     @FindBy(xpath = "//button[@id='email_quote']")
-    public WebElement emailEstimate;
+    protected WebElement emailEstimate;
+
     @FindBy(xpath = "//*[@id='input_380']")
-    public WebElement stringEmailCalculator;
+    protected WebElement stringEmailCalculator;
+
     @FindBy(xpath = "//form[@name='emailForm']//button[@aria-label='Send Email']")
-    public WebElement buttonSendEmailCalculator;
+    protected WebElement buttonSendEmailCalculator;
 
 
+    private final String preSelectSoftWareType="//*[@id='select_option_48']/div[text()='%s']";
+    private final String preSelectVMClass="//*[@id='select_value_label_41']/span[1]/div[text()='%s']";
+    private final String preSelectInstanceType="//md-option[@value='%s']/div[1]";
+    private final String preSelectNumberGPU="//div[@class='md-text ng-binding' and text()='%s']";
+    private final String preSelectGPUType="//*[@id='select_option_341']/div[text()='%s']";
+    private final String preSelectlocalSSD="//*[@id='select_option_182']/div[text()='%s']";
+    private final String preSelectdataCenterLocation="//*[@id='select_container_98']//div[ text()='Frankfurt (europe-west3)']";
 
-    private By choiceFree=By.xpath("//*[@id='select_option_48']/div[1]");
-    private By selectInstanceTypeNOneStandard = By.xpath("//*[@id='select_option_70']/div[1]");
-    private By selectValueNumberOfGpus1 = By.xpath("//*[@id='select_option_334']/div");
-    private By selectGpuTypeV100 = By.xpath("//*[@id='select_option_341']/div");
-    private By selectLocalSsd2x375 = By.xpath("//*[@id='select_option_182']");
-    private By selectDataCenterLocationEW3 = By.id("select_option_196");
-    private By selectCommitedUsageOneYear = By.xpath("//*[@id='select_option_100']");
 
 
 
@@ -103,15 +129,19 @@ public  class CalculatorPage extends AbstractPage {
        instancesForField.sendKeys(whatInstunceFor);
         return this;
     }
-    private CalculatorPage setInstanceOS(){
+    private CalculatorPage setOS(By by){
        operatingSystem.click();
-       if (userCase.getInstanceType().equals("Free:_Debian_CentOS_CoreOS_Ubuntu_Or_Other_User_Provided_OS")){
-           driver.findElement(choiceFree).click();}
-
+       driver.findElement(by).click();
         return this;
     }
-    private CalculatorPage setClassVM(By by){
-        popUpInstanceType.click();
+    private CalculatorPage setVmClass(By by) {
+        vmClassField.click();
+        driver.findElement(by).click();
+        return this;
+    }
+
+    private CalculatorPage setInstanceType(By by){
+        dropDownInstanceType.click();
         driver.findElement(by).click();
         return this;
     }
@@ -134,9 +164,10 @@ public  class CalculatorPage extends AbstractPage {
         driver.findElement(by).click();
         return this;
     }
-    private CalculatorPage setCommitedUsage(By by){
+    private CalculatorPage setCommitedUsage(String commitedUsage){
         selectCommitedUsage.click();
-        driver.findElement(by).click();
+        if(commitedUsage.equals(1)){   selectCommitedUsageOneYear.click();}
+        if(commitedUsage.equals(3)){   selectCommitedUsageThreeYear.click();}
         return this;
     }
 
@@ -144,12 +175,14 @@ public  class CalculatorPage extends AbstractPage {
         this.activateComputeEngine();
         this.setNumberOfInstances(userCase.getNumberOfInstance());
         this.setInstacasForField(userCase.getWhatInstunceFor());
-        this.setInstanceOS();
-        this.setClassVM();
-        this.setAddGPU();
-        this.setLocacSSD();
-        this.setDataCenter();
-        this.setCommitedUsage();
+        this.setOS(masterForLocators(preSelectSoftWareType,userCase.getSoftWare()));
+        this.setVmClass(masterForLocators(preSelectVMClass,userCase.getvMClass()));
+        this.setInstanceType(masterForLocators(preSelectInstanceType,userCase.getInstanceType()));
+        this.setAddGPU(masterForLocators(preSelectNumberGPU,userCase.getNumberGPU()),
+                        masterForLocators(preSelectGPUType,userCase.getgPUType()));
+        this.setLocacSSD(masterForLocators(preSelectlocalSSD,userCase.getLocalSSD()));
+        this.setDataCenter(masterForLocators(preSelectdataCenterLocation,userCase.getDataCenterLocation()));
+        this.setCommitedUsage(userCase.getCommitedUsage());
         clickButtonAddToEstimate.click();
         return new CalculatorPage(driver);
     }
@@ -168,7 +201,7 @@ public  class CalculatorPage extends AbstractPage {
 
 
 
-        public TenMinuteMailPage goToTenMinuteEmail() {
+    public TenMinuteMailPage goToTenMinuteEmail() {
 
             emailEstimate.click();
             driver.switchTo().defaultContent();
@@ -176,7 +209,7 @@ public  class CalculatorPage extends AbstractPage {
             switchingBetweenWindow(1);
             return new TenMinuteMailPage(driver);
 
-        }
+    }
 
     public TenMinuteMailPage setEmailFromTenMinuteMailToMailForm(String emailFromTenMinuteMail){
         switchingBetweenWindow(0);
@@ -197,6 +230,12 @@ public  class CalculatorPage extends AbstractPage {
     public void  switchingBetweenWindow(int win) {
         windowHandle = new ArrayList <String>(driver.getWindowHandles());
         driver.switchTo().window(windowHandle.get(win));
+    }
+
+    private   By masterForLocators(final String target, final String values)
+    {String selector=String.format(target,values);
+      By  locator = By.xpath(selector);
+        return locator;
     }
       @Override
     public void openPage() {
