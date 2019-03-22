@@ -42,7 +42,6 @@ public class TestListener implements ITestListener {
         File screenCapture = ((TakesScreenshot) DriverSingleton
                 .getDriver())
                 .getScreenshotAs(OutputType.FILE);
-
         try {
             FileUtils.copyFile(screenCapture, new File(
                     ".//target/screenshots/"
@@ -51,9 +50,6 @@ public class TestListener implements ITestListener {
         } catch (IOException e) {
             e.getLocalizedMessage();
         }
-
-
-
     }
 
     private String getCurrentTimeAsString(){
