@@ -23,12 +23,11 @@ public class CommonConditions {
         productsPage=new ProductsPage(driver);
         pricingPage=new PricingPage(driver);
         calculatorPage=new CalculatorPage(driver);
-        mainCloudPage.openPage();
-        mainCloudPage.pushExploreAllProducts()
+        mainCloudPage.openPage()
+                .pushExploreAllProducts()
                 .pushSeePrising()
                 .pushPricingNavigationCalculators()
                 .addToEstimate();
-
     }
 
     @AfterTest(alwaysRun = true)

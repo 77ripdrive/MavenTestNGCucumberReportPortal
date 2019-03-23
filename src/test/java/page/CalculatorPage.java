@@ -42,25 +42,25 @@ public  class CalculatorPage extends AbstractPage {
     @FindBy(xpath = "//*[@id='select_value_label_41']/span[2]")
     protected WebElement vmClassField;
 
-    @FindBy(id = "select_value_label_42")
+    @FindBy(xpath ="//md-select[@placeholder='Instance type']")
     protected WebElement dropDownInstanceType;
 
     @FindBy(xpath = "//*[@aria-label='Add GPUs']")
     protected WebElement ripplyAddGpus;
 
-    @FindBy(xpath = "//md-select-value[@id='select_value_label_327']")
+    @FindBy(xpath = "//md-select[@placeholder='Number of GPUs")
     protected WebElement selectValueNumberOfGpus;
 
-    @FindBy(xpath = "//*[@id='select_value_label_328']/span[1]")
+    @FindBy(xpath = "//md-select[@placeholder='GPU type']")
     protected WebElement selectGpuType;
 
-    @FindBy(id = "select_value_label_43")
+    @FindBy(xpath = "//md-select[@placeholder='Local SSD']")
     protected WebElement selectLocalSsd;
 
-    @FindBy(id = "select_value_label_44")
+    @FindBy(xpath = "//md-select[@placeholder='Datacenter location']")
     protected WebElement selectDataCenterLocation;
 
-    @FindBy(id = "select_value_label_45")
+    @FindBy(xpath= "//md-select[@placeholder='Committed usage']//span[1]/div")
     protected WebElement selectCommitedUsage;
 
     @FindBy(id = "select_option_100")
@@ -90,12 +90,6 @@ public  class CalculatorPage extends AbstractPage {
     @FindBy(xpath = "(//div[@class='md-list-item-text ng-binding'])[6]")
     protected WebElement tableCommitmentTerm;
 
-    @FindBy(xpath = "//*[@class='cp-header']//iframe")
-    protected WebElement switchOnIframe;
-
-    @FindBy(xpath = "//*[@id='idIframe']")
-    protected WebElement switchOnIframeCalculator;
-
     @FindBy(xpath = "//button[@id='email_quote']")
     protected WebElement emailEstimate;
 
@@ -106,26 +100,21 @@ public  class CalculatorPage extends AbstractPage {
     protected WebElement buttonSendEmailCalculator;
 
 
-    private final String preSelectSoftWareType="//div[text()='%s']";
-    private final String preSelectVMClass="//*[@id='select_value_label_41']/span[1]/div[contains(text(),'%s')]";
-    private final String preSelectInstanceType="//md-option[@value='%s']/div[1]";
-    private final String preSelectNumberGPU="//div[@class='md-text ng-binding' and contains(text(),'%s')]";
-    private final String preSelectGPUType="//*[@id='select_option_341']/div[contains(text(),'%s')]";
-    private final String preSelectlocalSSD="//*[@id='select_option_182']/div[contains(text(),'%s')]";
-    private final String preSelectdataCenterLocation="//*[@id='select_container_98']//div[ contains(text(),'%s')]";
-
-
-
+    private  String preSelectSoftWareType="//md-option/div[text()='%s']";
+    private  String preSelectVMClass="//md-select//md-option/div[text()='%s']";
+    private  String preSelectInstanceType="//md-option[@value='%s']/div[1]";
+    private  String preSelectNumberGPU="//md-option/div[@class='md-text ng-binding' and text()='%s']";
+    private  String preSelectGPUType="//md-option/div[contains(text(),'%s')]";
+    private  String preSelectlocalSSD="//md-option/div[contains(text(),'%s')]";
+    private  String preSelectdataCenterLocation="//*[@class='md-overflow']//md-option/div[contains(text(),'$s')]";
 
     private CalculatorPage activateComputeEngine(){
-        new  WebDriverWait(driver,WAIT_TIMEOUT_SECONDS)
-                .until(ExpectedConditions.visibilityOf(computeEngineOn));
-        driver.switchTo().frame(switchOnIframe);
+        WebDriverWait wait = new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//*")));
         computeEngineOn.click();
         return this;
     }
     private CalculatorPage setNumberOfInstances(String numberOfInstance){
-
         numberOfInstans.sendKeys(numberOfInstance);
         return this;
     }
@@ -176,6 +165,7 @@ public  class CalculatorPage extends AbstractPage {
     }
 
     public CalculatorPage addToEstimate(){
+        driver.switchTo().frame("idIframe");
         this.activateComputeEngine();
         this.setNumberOfInstances(userCase.getNumberOfInstance());
         this.setInstacasForField(userCase.getWhatInstunceFor());
@@ -216,7 +206,7 @@ public  class CalculatorPage extends AbstractPage {
 
     public TenMinuteMailPage setEmailFromTenMinuteMailToMailForm(String emailFromTenMinuteMail){
         switchingBetweenWindow(0);
-        driver.switchTo().frame(switchOnIframeCalculator);
+        driver.switchTo().frame("idIframe");
         stringEmailCalculator.sendKeys(emailFromTenMinuteMail);
         buttonSendEmailCalculator.click();
         driver.switchTo().defaultContent();
@@ -237,7 +227,7 @@ public  class CalculatorPage extends AbstractPage {
 
     private   By masterForLocators(String target,  String values)
     { values=values.replace("_"," ");
-        String selector=String.format(target,values);
+       final String selector=String.format(target,values);
       By  locator = By.xpath(selector);
         return locator;
     }
