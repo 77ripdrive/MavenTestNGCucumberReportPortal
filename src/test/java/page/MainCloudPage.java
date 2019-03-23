@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class MainCloudPage extends AbstractPage {
     Actions actions = new Actions(driver);
-    public final String BASE_URL = "https://cloud.google.com/";
+    public final String BASE_URL = "https://cloud.google.com";
     private final Logger logger = LogManager.getRootLogger();
 
     @FindBy(xpath = "//a[@track-name='exploreProducts']")
@@ -31,8 +31,9 @@ public class MainCloudPage extends AbstractPage {
     }
 
     @Override
-    public void openPage() {
+    public MainCloudPage openPage() {
         driver.navigate().to(BASE_URL);
         logger.info("MainCloudPage opened");
+        return  new MainCloudPage(driver);
     }
 }

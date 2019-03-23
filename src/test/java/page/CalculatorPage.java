@@ -9,6 +9,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import service.UserCaseCreator;
 
 import java.util.ArrayList;
@@ -47,7 +49,7 @@ public  class CalculatorPage extends AbstractPage {
     protected WebElement ripplyAddGpus;
 
     @FindBy(xpath = "//md-select-value[@id='select_value_label_327']")
-    protected     WebElement selectValueNumberOfGpus;
+    protected WebElement selectValueNumberOfGpus;
 
     @FindBy(xpath = "//*[@id='select_value_label_328']/span[1]")
     protected WebElement selectGpuType;
@@ -104,18 +106,20 @@ public  class CalculatorPage extends AbstractPage {
     protected WebElement buttonSendEmailCalculator;
 
 
-    private final String preSelectSoftWareType="//*[@id='select_option_48']/div[text()='%s']";
-    private final String preSelectVMClass="//*[@id='select_value_label_41']/span[1]/div[text()='%s']";
+    private final String preSelectSoftWareType="//div[text()='%s']";
+    private final String preSelectVMClass="//*[@id='select_value_label_41']/span[1]/div[contains(text(),'%s')]";
     private final String preSelectInstanceType="//md-option[@value='%s']/div[1]";
-    private final String preSelectNumberGPU="//div[@class='md-text ng-binding' and text()='%s']";
-    private final String preSelectGPUType="//*[@id='select_option_341']/div[text()='%s']";
-    private final String preSelectlocalSSD="//*[@id='select_option_182']/div[text()='%s']";
-    private final String preSelectdataCenterLocation="//*[@id='select_container_98']//div[ text()='Frankfurt (europe-west3)']";
+    private final String preSelectNumberGPU="//div[@class='md-text ng-binding' and contains(text(),'%s')]";
+    private final String preSelectGPUType="//*[@id='select_option_341']/div[contains(text(),'%s')]";
+    private final String preSelectlocalSSD="//*[@id='select_option_182']/div[contains(text(),'%s')]";
+    private final String preSelectdataCenterLocation="//*[@id='select_container_98']//div[ contains(text(),'%s')]";
 
 
 
 
     private CalculatorPage activateComputeEngine(){
+        new  WebDriverWait(driver,WAIT_TIMEOUT_SECONDS)
+                .until(ExpectedConditions.visibilityOf(computeEngineOn));
         driver.switchTo().frame(switchOnIframe);
         computeEngineOn.click();
         return this;
@@ -129,39 +133,39 @@ public  class CalculatorPage extends AbstractPage {
        instancesForField.sendKeys(whatInstunceFor);
         return this;
     }
-    private CalculatorPage setOS(By by){
+    private CalculatorPage setOS(String softWare){
        operatingSystem.click();
-       driver.findElement(by).click();
+       driver.findElement(masterForLocators(preSelectSoftWareType,softWare)).click();
         return this;
     }
-    private CalculatorPage setVmClass(By by) {
+    private CalculatorPage setVmClass(String vmClass) {
         vmClassField.click();
-        driver.findElement(by).click();
+        driver.findElement(masterForLocators(preSelectVMClass,vmClass)).click();
         return this;
     }
 
-    private CalculatorPage setInstanceType(By by){
+    private CalculatorPage setInstanceType(String instanceType){
         dropDownInstanceType.click();
-        driver.findElement(by).click();
+        driver.findElement(masterForLocators(preSelectInstanceType,instanceType)).click();
         return this;
     }
-    private CalculatorPage setAddGPU(By by,By by1){
+    private CalculatorPage setAddGPU(String numberGPU,String gPUType){
         ripplyAddGpus.click();
         selectValueNumberOfGpus.click();
-        driver.findElement(by).click();
+        driver.findElement(masterForLocators(preSelectNumberGPU,numberGPU)).click();
         selectGpuType.click();
-        driver.findElement(by1).click();
+        driver.findElement(masterForLocators(preSelectGPUType,gPUType)).click();
         return this;
     }
-    private CalculatorPage setLocacSSD(By by){
+    private CalculatorPage setLocacSSD(String localSSD ){
         selectLocalSsd.click();
-        driver.findElement(by).click();
+        driver.findElement(masterForLocators(preSelectlocalSSD,localSSD)).click();
         return this;
     }
 
-    private CalculatorPage setDataCenter(By by){
+    private CalculatorPage setDataCenter(String dataCenter){
         selectDataCenterLocation.click();
-        driver.findElement(by).click();
+        driver.findElement(masterForLocators(preSelectdataCenterLocation,dataCenter)).click();
         return this;
     }
     private CalculatorPage setCommitedUsage(String commitedUsage){
@@ -175,13 +179,12 @@ public  class CalculatorPage extends AbstractPage {
         this.activateComputeEngine();
         this.setNumberOfInstances(userCase.getNumberOfInstance());
         this.setInstacasForField(userCase.getWhatInstunceFor());
-        this.setOS(masterForLocators(preSelectSoftWareType,userCase.getSoftWare()));
-        this.setVmClass(masterForLocators(preSelectVMClass,userCase.getvMClass()));
-        this.setInstanceType(masterForLocators(preSelectInstanceType,userCase.getInstanceType()));
-        this.setAddGPU(masterForLocators(preSelectNumberGPU,userCase.getNumberGPU()),
-                        masterForLocators(preSelectGPUType,userCase.getgPUType()));
-        this.setLocacSSD(masterForLocators(preSelectlocalSSD,userCase.getLocalSSD()));
-        this.setDataCenter(masterForLocators(preSelectdataCenterLocation,userCase.getDataCenterLocation()));
+        this.setOS(userCase.getSoftWare());
+        this.setVmClass(userCase.getvMClass());
+        this.setInstanceType(userCase.getInstanceType());
+        this.setAddGPU(userCase.getNumberGPU(),userCase.getgPUType());
+        this.setLocacSSD(userCase.getLocalSSD());
+        this.setDataCenter(userCase.getDataCenterLocation());
         this.setCommitedUsage(userCase.getCommitedUsage());
         clickButtonAddToEstimate.click();
         return new CalculatorPage(driver);
@@ -232,15 +235,17 @@ public  class CalculatorPage extends AbstractPage {
         driver.switchTo().window(windowHandle.get(win));
     }
 
-    private   By masterForLocators(final String target, final String values)
-    {String selector=String.format(target,values);
+    private   By masterForLocators(String target,  String values)
+    { values=values.replace("_"," ");
+        String selector=String.format(target,values);
       By  locator = By.xpath(selector);
         return locator;
     }
       @Override
-    public void openPage() {
+    public CalculatorPage openPage() {
         driver.navigate().to(BASE_URL);
         logger.info("Pricing page opened");
+        return new CalculatorPage(driver);
     }
 }
 

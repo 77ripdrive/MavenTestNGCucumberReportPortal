@@ -42,8 +42,9 @@ public class TenMinuteMailPage extends AbstractPage {
         return mailTotalEstimateCostFromTenMinuteEmail;
     }
     @Override
-    public void openPage() {
+    public TenMinuteMailPage openPage() {
         driver.navigate().to(BASE_URL);
         logger.info("TenMinuteMailPage opened");
+        return new TenMinuteMailPage(driver);
     }
 }

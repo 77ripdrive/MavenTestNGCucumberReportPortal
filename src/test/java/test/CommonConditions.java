@@ -14,7 +14,7 @@ public class CommonConditions {
     protected ProductsPage productsPage;
     protected PricingPage pricingPage;
     protected CalculatorPage calculatorPage;
-    protected TenMinuteMailPage tenMinuteMailPage;
+
 
     @BeforeTest()
     public void setUp()
@@ -33,6 +33,6 @@ public class CommonConditions {
 
     @AfterTest(alwaysRun = true)
     public void stopBrowser()
-    {        DriverSingleton.closeDriver();
+    {    //    DriverSingleton.closeDriver();
     }
 }

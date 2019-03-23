@@ -7,6 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class PricingPage extends AbstractPage {
     private final Logger logger = LogManager.getRootLogger();
@@ -18,6 +20,8 @@ public class PricingPage extends AbstractPage {
 
     public CalculatorPage pushPricingNavigationCalculators(){
         logger.info("Pricing page opened");
+        new WebDriverWait(driver,WAIT_TIMEOUT_SECONDS)
+                .until(ExpectedConditions.visibilityOf(pricingNavigationCalculators));
         pricingNavigationCalculators.click();
         return new CalculatorPage(driver);
     }
@@ -28,8 +32,9 @@ public class PricingPage extends AbstractPage {
     }
 
     @Override
-    public void openPage() {
+    public PricingPage openPage() {
         driver.navigate().to(BASE_URL);
+        return new PricingPage(driver);
 
     }
 }
