@@ -12,42 +12,22 @@ public class VerificationOfUserDataEnteredInTheCalculationPage extends CommonCon
     protected String commitmentTerm = "Commitment term: 1 Year";
     protected String totalEstimatedCost = "Total Estimated Cost: USD 1,187.77 per 1 month";
 
+
     @Test
-    public void checkClassVMFromEstimate() {
+    public void checkInstanceTypeFromEstimate() {mainCloudPage.openPage();
+        mainCloudPage.pushExploreAllProducts()
+                .pushSeePrising()
+                .pushPricingNavigationCalculators()
+                .addToEstimate();
         Assert.assertEquals(calculatorPage.getClassVM(), classVM);
-    }
-
-    @Test
-    public void checkInstanceTypeFromEstimate() {
         Assert.assertEquals(calculatorPage.getInstataceType(), instataceType);
-    }
-
-    @Test
-    public void checkRegoinFromEstimate() {
         Assert.assertEquals(calculatorPage.getRegion(), region);
-    }
-
-    @Test
-    public void checkLocalSSDFromEstimate() {
         Assert.assertEquals(calculatorPage.getLocalSsd(), localSsd);
-    }
-
-    @Test
-    public void checkCommitmentFromEstimate() {
         Assert.assertEquals(calculatorPage.getCommitmentTerm(), commitmentTerm);
+        Assert.assertEquals(calculatorPage.getTotalEstimatedCost(), totalEstimatedCost);
+
     }
 
-    @Test
-    public void checkTotalCoastFromEstimate() {
-        Assert.assertEquals(calculatorPage.getTotalEstimatedCost(), totalEstimatedCost);
-    }
-//    @Test(priority = 7)
-//    public void checkTotalCoastEstimateFromTenMinuteEmail(){
-//        String totalEstimateTable=calculatorPage.getTotalEstimatedCost();
-//        calculatorPage.nextStepToGetMailWithEstimateCost();
-//        String coastFromEmail=calculatorPage.getTotalEstimateCostFromTenMinute();
-//        Assert.assertTrue(totalEstimateTable.contains(String.valueOf(coastFromEmail)));
-//        calculatorPage.closeTenMinuteEmail();
 }
 
 

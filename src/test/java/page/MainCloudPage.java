@@ -32,7 +32,7 @@ public class MainCloudPage extends AbstractPage {
 
     @Override
     public MainCloudPage openPage() {
-        driver.navigate().to(BASE_URL);
+        driver.get(BASE_URL);
         logger.info("MainCloudPage opened");
         return  new MainCloudPage(driver);
     }

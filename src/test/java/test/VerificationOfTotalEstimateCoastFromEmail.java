@@ -5,17 +5,21 @@ import org.testng.annotations.Test;
 import page.TenMinuteMailPage;
 
 public class VerificationOfTotalEstimateCoastFromEmail extends CommonConditions {
-    protected TenMinuteMailPage tenMinuteMailPage=new TenMinuteMailPage(driver);
+
     @Test
     public void checkTotalCoastEstimateFromTenMinuteEmail() {
-        String totalEstimateTable = calculatorPage.getTotalEstimatedCost();
-        calculatorPage.goToTenMinuteEmail()
-                .openPage();
-        calculatorPage.setEmailFromTenMinuteMailToMailForm
-                (tenMinuteMailPage.getemailFromTenMinute());
+         String totalEstimateTable=mainCloudPage.openPage()
+                .pushExploreAllProducts()
+                .pushSeePrising()
+                .pushPricingNavigationCalculators()
+                .addToEstimate().getTotalEstimatedCost();
+
+        String emailFromTenMinute=calculatorPage.goToTenMinuteEmail()
+                .openPage()
+                .getemailFromTenMinute();
+        calculatorPage.setEmailFromTenMinuteMailToMailForm(emailFromTenMinute);
         String coastFromEmail = tenMinuteMailPage.readTotalEstimateCostFromTenMinute();
                 Assert.assertTrue(totalEstimateTable.contains(String.valueOf(coastFromEmail)));
-
         calculatorPage.closeTenMinuteEmail();
     }
 }

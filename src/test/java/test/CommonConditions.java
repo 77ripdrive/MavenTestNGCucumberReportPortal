@@ -14,6 +14,7 @@ public class CommonConditions {
     protected ProductsPage productsPage;
     protected PricingPage pricingPage;
     protected CalculatorPage calculatorPage;
+    protected TenMinuteMailPage tenMinuteMailPage;
 
 
     @BeforeTest()
@@ -23,15 +24,12 @@ public class CommonConditions {
         productsPage=new ProductsPage(driver);
         pricingPage=new PricingPage(driver);
         calculatorPage=new CalculatorPage(driver);
-        mainCloudPage.openPage()
-                .pushExploreAllProducts()
-                .pushSeePrising()
-                .pushPricingNavigationCalculators()
-                .addToEstimate();
+        tenMinuteMailPage=new TenMinuteMailPage(driver);
+
     }
 
     @AfterTest(alwaysRun = true)
     public void stopBrowser()
-    {    //    DriverSingleton.closeDriver();
+    {       DriverSingleton.closeDriver();
     }
 }

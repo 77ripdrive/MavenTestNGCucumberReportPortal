@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -14,9 +15,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import service.UserCaseCreator;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public  class CalculatorPage extends AbstractPage {
     private final Logger logger = LogManager.getRootLogger();
+    Actions actions = new Actions(driver);
     private final String BASE_URL = "https://cloud.google.com/products/calculator/";
     ArrayList <String> windowHandle;
     public CalculatorPage(WebDriver driver) {
@@ -48,7 +51,7 @@ public  class CalculatorPage extends AbstractPage {
     @FindBy(xpath = "//*[@aria-label='Add GPUs']")
     protected WebElement ripplyAddGpus;
 
-    @FindBy(xpath = "//md-select[@placeholder='Number of GPUs")
+    @FindBy(xpath = "//md-select[@placeholder='Number of GPUs']/md-select-value/span[1]")
     protected WebElement selectValueNumberOfGpus;
 
     @FindBy(xpath = "//md-select[@placeholder='GPU type']")
@@ -57,17 +60,11 @@ public  class CalculatorPage extends AbstractPage {
     @FindBy(xpath = "//md-select[@placeholder='Local SSD']")
     protected WebElement selectLocalSsd;
 
-    @FindBy(xpath = "//md-select[@placeholder='Datacenter location']")
+    @FindBy(xpath = "//md-select[@placeholder='Datacenter location']/*[@id='select_value_label_44']/span[1]/div")
     protected WebElement selectDataCenterLocation;
 
     @FindBy(xpath= "//md-select[@placeholder='Committed usage']//span[1]/div")
     protected WebElement selectCommitedUsage;
-
-    @FindBy(id = "select_option_100")
-    protected WebElement selectCommitedUsageOneYear;
-
-    @FindBy(id = "select_option_101")
-     protected WebElement selectCommitedUsageThreeYear;
 
     @FindBy(xpath = "//form/div[11]/button[@aria-label='Add to Estimate']")
     protected WebElement clickButtonAddToEstimate;
@@ -90,23 +87,24 @@ public  class CalculatorPage extends AbstractPage {
     @FindBy(xpath = "(//div[@class='md-list-item-text ng-binding'])[6]")
     protected WebElement tableCommitmentTerm;
 
-    @FindBy(xpath = "//button[@id='email_quote']")
+    @FindBy(xpath = "//button[@class='md-raised md-primary cpc-button md-button md-ink-ripple' and @id='email_quote']")
     protected WebElement emailEstimate;
 
-    @FindBy(xpath = "//*[@id='input_380']")
+    @FindBy(xpath = "//input[@type='email']")
     protected WebElement stringEmailCalculator;
 
-    @FindBy(xpath = "//form[@name='emailForm']//button[@aria-label='Send Email']")
+    @FindBy(xpath = "//button[@aria-label='Send Email']")
     protected WebElement buttonSendEmailCalculator;
 
 
     private  String preSelectSoftWareType="//md-option/div[text()='%s']";
-    private  String preSelectVMClass="//md-select//md-option/div[text()='%s']";
+    private  String preSelectVMClass="//md-option/div[text()='%s']";
     private  String preSelectInstanceType="//md-option[@value='%s']/div[1]";
     private  String preSelectNumberGPU="//md-option/div[@class='md-text ng-binding' and text()='%s']";
     private  String preSelectGPUType="//md-option/div[contains(text(),'%s')]";
     private  String preSelectlocalSSD="//md-option/div[contains(text(),'%s')]";
-    private  String preSelectdataCenterLocation="//*[@class='md-overflow']//md-option/div[contains(text(),'$s')]";
+    private  String preSelectdataCenterLocation="//*[@class='md-overflow']//md-option/div[text()='%s']";
+    private  String preSelectCommitedUsage="//md-option/div[text()='%s']";
 
     private CalculatorPage activateComputeEngine(){
         WebDriverWait wait = new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
@@ -129,7 +127,9 @@ public  class CalculatorPage extends AbstractPage {
     }
     private CalculatorPage setVmClass(String vmClass) {
         vmClassField.click();
-        driver.findElement(masterForLocators(preSelectVMClass,vmClass)).click();
+        List <WebElement> links = driver.findElements
+                (masterForLocators(preSelectVMClass,vmClass));
+        links.get(1).click();
         return this;
     }
 
@@ -141,28 +141,34 @@ public  class CalculatorPage extends AbstractPage {
     private CalculatorPage setAddGPU(String numberGPU,String gPUType){
         ripplyAddGpus.click();
         selectValueNumberOfGpus.click();
-        driver.findElement(masterForLocators(preSelectNumberGPU,numberGPU)).click();
+        driver.findElement(masterForLocators
+                (preSelectNumberGPU,numberGPU)).click();
         selectGpuType.click();
-        driver.findElement(masterForLocators(preSelectGPUType,gPUType)).click();
+        driver.findElement(masterForLocators
+                (preSelectGPUType,gPUType)).click();
         return this;
     }
     private CalculatorPage setLocacSSD(String localSSD ){
         selectLocalSsd.click();
-        driver.findElement(masterForLocators(preSelectlocalSSD,localSSD)).click();
+        driver.findElement(masterForLocators
+                (preSelectlocalSSD,localSSD)).click();
         return this;
     }
 
     private CalculatorPage setDataCenter(String dataCenter){
         selectDataCenterLocation.click();
-        driver.findElement(masterForLocators(preSelectdataCenterLocation,dataCenter)).click();
+        driver.findElement(masterForLocators
+                (preSelectdataCenterLocation,dataCenter)).click();
         return this;
     }
     private CalculatorPage setCommitedUsage(String commitedUsage){
         selectCommitedUsage.click();
-        if(commitedUsage.equals(1)){   selectCommitedUsageOneYear.click();}
-        if(commitedUsage.equals(3)){   selectCommitedUsageThreeYear.click();}
+        List <WebElement> links = driver.findElements
+                (masterForLocators(preSelectCommitedUsage,commitedUsage));
+        links.get(1).click();
         return this;
     }
+
 
     public CalculatorPage addToEstimate(){
         driver.switchTo().frame("idIframe");
@@ -180,6 +186,7 @@ public  class CalculatorPage extends AbstractPage {
         return new CalculatorPage(driver);
     }
 
+
     public String getTotalEstimatedCost() { return tableTotalEstimateCost.getText();    }
 
     public String getClassVM() {  return tatbleVMClass.getText();  }
@@ -195,22 +202,22 @@ public  class CalculatorPage extends AbstractPage {
 
 
     public TenMinuteMailPage goToTenMinuteEmail() {
-
-            emailEstimate.click();
-            driver.switchTo().defaultContent();
-            ( (JavascriptExecutor) driver ).executeScript("window.open()");
-            switchingBetweenWindow(1);
-            return new TenMinuteMailPage(driver);
+        emailEstimate.click();
+        driver.switchTo().defaultContent();
+        ( (JavascriptExecutor) driver ).executeScript("window.open()");
+         switchingBetweenWindow(1);
+         return new TenMinuteMailPage(driver);
 
     }
 
-    public TenMinuteMailPage setEmailFromTenMinuteMailToMailForm(String emailFromTenMinuteMail){
+    public TenMinuteMailPage setEmailFromTenMinuteMailToMailForm(String emailAdress){
         switchingBetweenWindow(0);
         driver.switchTo().frame("idIframe");
-        stringEmailCalculator.sendKeys(emailFromTenMinuteMail);
+        stringEmailCalculator.sendKeys(emailAdress);
         buttonSendEmailCalculator.click();
         driver.switchTo().defaultContent();
         switchingBetweenWindow(1);
+        logger.info("Move to 10minute");
         return new TenMinuteMailPage(driver);
     }
 
@@ -226,7 +233,7 @@ public  class CalculatorPage extends AbstractPage {
     }
 
     private   By masterForLocators(String target,  String values)
-    { values=values.replace("_"," ");
+    { values=values.replaceAll("_"," ");
        final String selector=String.format(target,values);
       By  locator = By.xpath(selector);
         return locator;
