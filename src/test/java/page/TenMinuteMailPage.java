@@ -36,14 +36,14 @@ public class TenMinuteMailPage extends AbstractPage {
 
     public String readTotalEstimateCostFromTenMinute() {
         logger.info("Wait for GoogleEmail");
-        try {
-            TimeUnit.SECONDS.sleep(80);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            TimeUnit.SECONDS.sleep(80);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+        new WebDriverWait(driver, 80)
+                .until(ExpectedConditions.elementToBeClickable(tenMinuteMail));
         logger.info("....");
-//        JavascriptExecutor js1 = ((JavascriptExecutor) driver);
-//        js1.executeScript("window.scrollTo(0, document.body.scrollHeight);");
         actions.moveToElement(tenMinuteMail);
         tenMinuteMail.click();
         String mailTotalEstimateCostFromTenMinuteEmail = mailTotalEstCost.getText();
