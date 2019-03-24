@@ -12,6 +12,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import service.LocatorCorrector;
 import service.UserCaseCreator;
 
 import java.util.ArrayList;
@@ -122,49 +123,50 @@ public  class CalculatorPage extends AbstractPage {
     }
     private CalculatorPage setOS(String softWare){
        operatingSystem.click();
-       driver.findElement(masterForLocators(preSelectSoftWareType,softWare)).click();
+       driver.findElement(LocatorCorrector
+               .masterForLocators(preSelectSoftWareType,softWare)).click();
         return this;
     }
     private CalculatorPage setVmClass(String vmClass) {
         vmClassField.click();
         List <WebElement> links = driver.findElements
-                (masterForLocators(preSelectVMClass,vmClass));
+                (LocatorCorrector.masterForLocators(preSelectVMClass,vmClass));
         links.get(1).click();
         return this;
     }
 
     private CalculatorPage setInstanceType(String instanceType){
         dropDownInstanceType.click();
-        driver.findElement(masterForLocators(preSelectInstanceType,instanceType)).click();
+        driver.findElement(LocatorCorrector
+                .masterForLocators(preSelectInstanceType,instanceType)).click();
         return this;
     }
     private CalculatorPage setAddGPU(String numberGPU,String gPUType){
         ripplyAddGpus.click();
         selectValueNumberOfGpus.click();
-        driver.findElement(masterForLocators
-                (preSelectNumberGPU,numberGPU)).click();
+        driver.findElement(LocatorCorrector.masterForLocators(preSelectNumberGPU,numberGPU)).click();
         selectGpuType.click();
-        driver.findElement(masterForLocators
+        driver.findElement(LocatorCorrector.masterForLocators
                 (preSelectGPUType,gPUType)).click();
         return this;
     }
     private CalculatorPage setLocacSSD(String localSSD ){
         selectLocalSsd.click();
-        driver.findElement(masterForLocators
+        driver.findElement(LocatorCorrector.masterForLocators
                 (preSelectlocalSSD,localSSD)).click();
         return this;
     }
 
     private CalculatorPage setDataCenter(String dataCenter){
         selectDataCenterLocation.click();
-        driver.findElement(masterForLocators
+        driver.findElement(LocatorCorrector.masterForLocators
                 (preSelectdataCenterLocation,dataCenter)).click();
         return this;
     }
     private CalculatorPage setCommitedUsage(String commitedUsage){
         selectCommitedUsage.click();
         List <WebElement> links = driver.findElements
-                (masterForLocators(preSelectCommitedUsage,commitedUsage));
+                (LocatorCorrector.masterForLocators(preSelectCommitedUsage,commitedUsage));
         links.get(1).click();
         return this;
     }
@@ -232,12 +234,6 @@ public  class CalculatorPage extends AbstractPage {
         driver.switchTo().window(windowHandle.get(win));
     }
 
-    private   By masterForLocators(String target,  String values)
-    { values=values.replaceAll("_"," ");
-       final String selector=String.format(target,values);
-      By  locator = By.xpath(selector);
-        return locator;
-    }
       @Override
     public CalculatorPage openPage() {
         driver.navigate().to(BASE_URL);
