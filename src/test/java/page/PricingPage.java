@@ -22,9 +22,10 @@ public class PricingPage extends AbstractPage {
 
     public CalculatorPage pushPricingNavigationCalculators(){
         logger.info("Pricing page opened");
-        new WebDriverWait(driver,WAIT_TIMEOUT_SECONDS)
-                .until(ExpectedConditions.visibilityOf(pricingNavigationCalculators));
         actions.moveToElement(pricingNavigationCalculators);
+        new WebDriverWait(driver,WAIT_TIMEOUT_SECONDS)
+                .until(ExpectedConditions.elementToBeClickable(pricingNavigationCalculators));
+
         pricingNavigationCalculators.click();
         return new CalculatorPage(driver);
     }
