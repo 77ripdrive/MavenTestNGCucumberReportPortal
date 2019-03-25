@@ -5,6 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -13,6 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class PricingPage extends AbstractPage {
     private final Logger logger = LogManager.getRootLogger();
     private final String BASE_URL = "https://cloud.google.com/pricing/";
+    Actions actions = new Actions(driver);
 
     @FindBy(xpath = "//*[@id='cloud-site']//a[@track-name='pricingNav/calculators']")
     public WebElement pricingNavigationCalculators;
@@ -22,6 +24,7 @@ public class PricingPage extends AbstractPage {
         logger.info("Pricing page opened");
         new WebDriverWait(driver,WAIT_TIMEOUT_SECONDS)
                 .until(ExpectedConditions.visibilityOf(pricingNavigationCalculators));
+        actions.moveToElement(pricingNavigationCalculators);
         pricingNavigationCalculators.click();
         return new CalculatorPage(driver);
     }
