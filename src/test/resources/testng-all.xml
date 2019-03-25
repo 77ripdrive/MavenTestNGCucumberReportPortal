@@ -2,11 +2,9 @@
 
 <suite name="All tests" verbose="1" >
     <test name="All tests"   >
-        <classes>
-            <class name="test.VerificationOfTotalEstimateCoastFromEmail" />
-            <class name="test.VerificationOfUserDataEnteredInTheCalculationPage" />
-
-        </classes>
+        <packages>
+            <package name="test" />
+        </packages>
     </test>
 </suite>
 
