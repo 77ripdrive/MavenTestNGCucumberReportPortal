@@ -16,7 +16,7 @@ public class PricingPage extends AbstractPage {
     private final String BASE_URL = "https://cloud.google.com/pricing/";
     Actions actions = new Actions(driver);
 
-    @FindBy(xpath = "//*[@id='cloud-site']//a[@track-name='pricingNav/calculators']")
+    @FindBy(xpath = "//*[@id='cloud-site']//a[@href='https://cloud.google.com/products/calculator/']")
     public WebElement pricingNavigationCalculators;
 
 
