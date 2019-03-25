@@ -173,6 +173,7 @@ public  class CalculatorPage extends AbstractPage {
 
 
     public CalculatorPage addToEstimate(){
+        logger.info("Calculators page opened");
         driver.switchTo().frame("idIframe");
         this.activateComputeEngine();
         this.setNumberOfInstances(userCase.getNumberOfInstance());
@@ -237,7 +238,6 @@ public  class CalculatorPage extends AbstractPage {
       @Override
     public CalculatorPage openPage() {
         driver.navigate().to(BASE_URL);
-        logger.info("Pricing page opened");
         return new CalculatorPage(driver);
     }
 }
