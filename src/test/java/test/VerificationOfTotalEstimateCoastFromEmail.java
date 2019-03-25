@@ -2,7 +2,7 @@ package test;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import page.TenMinuteMailPage;
+
 
 public class VerificationOfTotalEstimateCoastFromEmail extends CommonConditions {
 
@@ -12,7 +12,8 @@ public class VerificationOfTotalEstimateCoastFromEmail extends CommonConditions 
                 .pushExploreAllProducts()
                 .pushSeePrising()
                 .pushPricingNavigationCalculators()
-                .addToEstimate().getTotalEstimatedCost();
+                .addToEstimate()
+                 .getTotalEstimatedCost();
 
         String emailFromTenMinute=calculatorPage.goToTenMinuteEmail()
                 .openPage()
