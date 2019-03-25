@@ -17,7 +17,7 @@ public class CommonConditions {
     protected TenMinuteMailPage tenMinuteMailPage;
 
 
-    @BeforeMethod()
+    @BeforeClass()
     public void setUp()
     {   driver = DriverSingleton.getDriver();
         mainCloudPage=new MainCloudPage(driver);
@@ -28,7 +28,7 @@ public class CommonConditions {
 
     }
 
-    @AfterMethod(alwaysRun = true)
+    @AfterClass(alwaysRun = true)
     public void stopBrowser()
     {       DriverSingleton.closeDriver();
     }
