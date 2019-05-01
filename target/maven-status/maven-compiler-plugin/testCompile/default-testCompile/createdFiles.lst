@@ -1,5 +1,6 @@
 page\PricingPage.class
-test\TestHardCore.class
+service\LocatorCorrector.class
+test\VerificationOfTotalEstimateCoastFromEmail.class
 test\CommonConditions.class
 page\ProductsPage.class
 page\CalculatorPage.class
@@ -7,6 +8,8 @@ service\UserCaseCreator.class
 util\TestListener.class
 service\TestDataReader.class
 page\MainCloudPage.class
+page\TenMinuteMailPage.class
+test\VerificationOfUserDataEnteredInTheCalculationPage.class
 driver\DriverSingleton.class
 model\UserCase.class
 page\AbstractPage.class

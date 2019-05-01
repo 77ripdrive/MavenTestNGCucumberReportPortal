@@ -8,6 +8,21 @@
             <set />
           </value>
         </entry>
+        <entry key="/a.dummy">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../allExerciseJava/src/main/java/sand/Sand.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/README.md">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/pom.xml">
           <value>
             <set />
@@ -48,7 +63,22 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/test/java/page/TenMinuteMailPage.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/test/java/page/TenMinutePage.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/test/java/service/LocatorCorrector.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/test/java/service/Sand.java">
           <value>
             <set />
           </value>
@@ -59,6 +89,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/test/java/service/UserCaseCreator.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/test/java/service/UtilitaForFindBy.java">
           <value>
             <set />
           </value>
@@ -74,6 +109,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/test/java/test/TestHardCore.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/test/java/test/VerificationOfTotalEstimateCoastFromEmail.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/test/java/test/VerificationOfUserDataEnteredInTheCalculationPage.java">
           <value>
             <set />
           </value>
@@ -98,6 +143,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/test/resources/log4j2.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/test/resources/test-smoke.xml">
           <value>
             <set />
@@ -108,7 +158,62 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/test/resources/testng-smoke.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/target/logs/automation.log">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/target/surefire-reports/TestSuite.txt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/target/surefire-reports/emailable-report.html">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/target/surefire-reports/index.html">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/target/surefire-reports/testng-failed.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/target/surefire-reports/testng-results.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../webDriverExercise/src/main/java/ExerrciseHurtMePlantly.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../webDriverExercise/src/main/java/HardCoreForTestNG.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="C:/Source/Repos/77ripdrive/pom.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="C:/Source/Repos/77ripdrive/src/main/java/Test.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="C:/Source/Repos/OG/src/test/calculator/TestEstimatedCost.java">
           <value>
             <set />
           </value>
