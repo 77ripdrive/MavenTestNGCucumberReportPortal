@@ -181,6 +181,7 @@ public  class CalculatorPage extends AbstractPage {
         this.setOS(userCase.getSoftWare());
         this.setVmClass(userCase.getvMClass());
         this.setInstanceType(userCase.getInstanceType());
+
         this.setAddGPU(userCase.getNumberGPU(),userCase.getgPUType());
         this.setLocacSSD(userCase.getLocalSSD());
         this.setDataCenter(userCase.getDataCenterLocation());
