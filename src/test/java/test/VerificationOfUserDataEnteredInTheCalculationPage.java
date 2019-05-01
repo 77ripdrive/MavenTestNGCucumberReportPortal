@@ -2,6 +2,7 @@ package test;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 public class VerificationOfUserDataEnteredInTheCalculationPage extends CommonConditions {
 
@@ -19,12 +20,15 @@ public class VerificationOfUserDataEnteredInTheCalculationPage extends CommonCon
                 .pushSeePrising()
                 .pushPricingNavigationCalculators()
                 .addToEstimate();
-        Assert.assertEquals(calculatorPage.getClassVM(), classVM);
-        Assert.assertEquals(calculatorPage.getInstataceType(), instataceType);
-        Assert.assertEquals(calculatorPage.getRegion(), region);
-        Assert.assertEquals(calculatorPage.getLocalSsd(), localSsd);
-        Assert.assertEquals(calculatorPage.getCommitmentTerm(), commitmentTerm);
-        Assert.assertEquals(calculatorPage.getTotalEstimatedCost(), totalEstimatedCost);
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(calculatorPage.getClassVM(), classVM);
+        softAssert.assertEquals(calculatorPage.getClassVM(), classVM);
+        softAssert.assertEquals(calculatorPage.getInstataceType(), instataceType);
+        softAssert.assertEquals(calculatorPage.getRegion(), region);
+        softAssert.assertEquals(calculatorPage.getLocalSsd(), localSsd);
+        softAssert.assertEquals(calculatorPage.getCommitmentTerm(), commitmentTerm);
+        softAssert.assertEquals(calculatorPage.getTotalEstimatedCost(), totalEstimatedCost);
+        softAssert.assertAll();
 
     }
 
