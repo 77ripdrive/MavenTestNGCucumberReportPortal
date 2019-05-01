@@ -1,6 +1,6 @@
 package page;
 
-import model.UserCase;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -13,7 +13,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import service.LocatorCorrector;
-import service.UserCaseCreator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +28,7 @@ public  class CalculatorPage extends AbstractPage {
     }
 
 
-    UserCase userCase=UserCaseCreator.withCredentialsFromProperty();
+
 
     @FindBy(xpath = "//div[@class='tab-holder compute' and @title='Compute Engine']")
     protected WebElement computeEngineOn;
@@ -172,36 +171,36 @@ public  class CalculatorPage extends AbstractPage {
     }
 
 
-    public CalculatorPage addToEstimate(){
+    public CalculatorPage fillFirstAND
+            (String numberOfInstance,String whatInstunceFor,String softWare) {
         logger.info("Calculators page opened");
         driver.switchTo().frame("idIframe");
         this.activateComputeEngine();
-        this.setNumberOfInstances(userCase.getNumberOfInstance());
-        this.setInstacasForField(userCase.getWhatInstunceFor());
-        this.setOS(userCase.getSoftWare());
-        this.setVmClass(userCase.getvMClass());
-        this.setInstanceType(userCase.getInstanceType());
+        this.setNumberOfInstances(numberOfInstance);
+        this.setInstacasForField(whatInstunceFor);
+        this.setOS(softWare);
+        return new CalculatorPage(driver);
 
-        this.setAddGPU(userCase.getNumberGPU(),userCase.getgPUType());
-        this.setLocacSSD(userCase.getLocalSSD());
-        this.setDataCenter(userCase.getDataCenterLocation());
-        this.setCommitedUsage(userCase.getCommitedUsage());
+    }
+    public CalculatorPage fillSecondAND
+            ( String vMClass,String instanceType,String numberGPU,String gPUType){
+        this.setVmClass(vMClass);
+        this.setInstanceType(instanceType);
+        this.setAddGPU(numberGPU,gPUType);
+
+        return new CalculatorPage(driver);
+    }
+    public CalculatorPage fillThiredAND
+            (String localSSD,String dataCenterLocation,String commitedUsage) {
+        this.setLocacSSD(localSSD);
+        this.setDataCenter(dataCenterLocation);
+        this.setCommitedUsage(commitedUsage);
         clickButtonAddToEstimate.click();
         return new CalculatorPage(driver);
     }
-
-
     public String getTotalEstimatedCost() { return tableTotalEstimateCost.getText();    }
 
-    public String getClassVM() {  return tatbleVMClass.getText();  }
 
-    public String getInstataceType() {  return tableInstanceType.getText();  }
-
-    public String getRegion() {  return tableRegin.getText(); }
-
-    public String getLocalSsd() {  return tableLocalSsd.getText();  }
-
-    public String getCommitmentTerm() { return tableCommitmentTerm.getText(); }
 
 
 
