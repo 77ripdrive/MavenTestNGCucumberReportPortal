@@ -15,8 +15,17 @@ public class MainCloudPage extends AbstractPage {
     public final String BASE_URL = "https://cloud.google.com";
     private final Logger logger = LogManager.getRootLogger();
 
-    @FindBy(xpath = "//a[@track-name='exploreProducts']")
+    @FindBy(xpath = "//a[@track-name='seeProducts']")
     public WebElement exploreAllProductsButton;
+
+
+    @FindBy(xpath = "//*[@alt='Roche logo']")
+    private WebElement logoRoche;
+
+    public boolean isLogoRocheExist(){
+        return logoRoche.isDisplayed();
+    }
+
 
     public MainCloudPage(WebDriver driver) {
         super(driver);
@@ -24,10 +33,8 @@ public class MainCloudPage extends AbstractPage {
     }
     public ProductsPage pushExploreAllProducts(){
         actions.moveToElement(exploreAllProductsButton);
-        new WebDriverWait(driver,WAIT_TIMEOUT_SECONDS)
-                .until(ExpectedConditions.visibilityOf(exploreAllProductsButton));
-        exploreAllProductsButton.click();
-        return new ProductsPage(driver);
+        waitUntilElementPresent(exploreAllProductsButton).click();
+                return new ProductsPage(driver);
     }
 
     @Override

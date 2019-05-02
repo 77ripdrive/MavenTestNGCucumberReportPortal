@@ -22,9 +22,9 @@ public class TenMinuteMailPage extends AbstractPage {
 
     @FindBy(xpath = "//*[@id='fe_text']")
     protected  WebElement emailFromTenMinute;
-    @FindBy(xpath = "//*[@id='maillist']/tbody/tr[2]/td[1]")
+    @FindBy(xpath = "//*[text()='Google Cloud Platform Price Estimate']")
     protected WebElement tenMinuteMail;
-    @FindBy(xpath = "//*[@id='tab1']//table/tbody/tr[2]/td[2]/h3")
+    @FindBy(xpath = "//h3[text()[contains(.,'USD')]]")
     protected WebElement mailTotalEstCost;
 
     public  String getemailFromTenMinute() {
@@ -34,7 +34,7 @@ public class TenMinuteMailPage extends AbstractPage {
     public String readTotalEstimateCostFromTenMinute() {
         logger.info("Wait for GoogleEmail");
         try {
-            TimeUnit.SECONDS.sleep(85);
+            TimeUnit.SECONDS.sleep(60);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -42,7 +42,7 @@ public class TenMinuteMailPage extends AbstractPage {
         actions.moveToElement(tenMinuteMail);
         tenMinuteMail.click();
         String mailTotalEstimateCostFromTenMinuteEmail = mailTotalEstCost.getText();
-        logger.info("Email from GoogleCloud with Total Coast is checked");
+        logger.info("Email from GoogleCloud with Total Coast is checked"+mailTotalEstimateCostFromTenMinuteEmail);
         return mailTotalEstimateCostFromTenMinuteEmail;
     }
     @Override

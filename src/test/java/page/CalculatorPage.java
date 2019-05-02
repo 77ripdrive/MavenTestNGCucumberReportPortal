@@ -128,9 +128,11 @@ public  class CalculatorPage extends AbstractPage {
     }
     private CalculatorPage setVmClass(String vmClass) {
         vmClassField.click();
+
         List <WebElement> links = driver.findElements
                 (LocatorCorrector.masterForLocators(preSelectVMClass,vmClass));
         links.get(1).click();
+
         return this;
     }
 
@@ -143,22 +145,26 @@ public  class CalculatorPage extends AbstractPage {
     private CalculatorPage setAddGPU(String numberGPU,String gPUType){
         ripplyAddGpus.click();
         selectValueNumberOfGpus.click();
+        logger.info("numberGPU");
         driver.findElement(LocatorCorrector.masterForLocators(preSelectNumberGPU,numberGPU)).click();
         selectGpuType.click();
-        driver.findElement(LocatorCorrector.masterForLocators
+        waitUntilElementPresent(LocatorCorrector.masterForLocators
                 (preSelectGPUType,gPUType)).click();
+        logger.info("gPUType"+gPUType);
         return this;
     }
     private CalculatorPage setLocacSSD(String localSSD ){
         selectLocalSsd.click();
-        driver.findElement(LocatorCorrector.masterForLocators
+        logger.info("setLocacSSD");
+        waitUntilElementPresent(LocatorCorrector.masterForLocators
                 (preSelectlocalSSD,localSSD)).click();
+                logger.info("localSSD");
         return this;
     }
 
     private CalculatorPage setDataCenter(String dataCenter){
         selectDataCenterLocation.click();
-        driver.findElement(LocatorCorrector.masterForLocators
+        waitUntilElementPresent(LocatorCorrector.masterForLocators
                 (preSelectdataCenterLocation,dataCenter)).click();
         return this;
     }
@@ -198,7 +204,7 @@ public  class CalculatorPage extends AbstractPage {
         clickButtonAddToEstimate.click();
         return new CalculatorPage(driver);
     }
-    public String getTotalEstimatedCost() { return tableTotalEstimateCost.getText();    }
+    public String getTotalEstimatedCost() { return waitUntilElementPresent(tableTotalEstimateCost).getText();    }
 
 
 

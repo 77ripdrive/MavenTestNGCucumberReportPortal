@@ -6,8 +6,9 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import driver.DriverSingleton;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
+
 import page.*;
 
 public class CloudGoogleDefs {
@@ -49,29 +50,29 @@ public class CloudGoogleDefs {
 
     @And("^I filled the field \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\"$")
     public void iFilledTheField
-            (String vMClass,String instanceType,String numberGPU,String gPUType ) throws Throwable {
+            (String vMClass,String instanceType,String numberGPU,String gPUType )  {
         calculatorPage.fillSecondAND(vMClass,instanceType,numberGPU,gPUType);
-        throw new PendingException();
+
     }
 
     @And("^I filled the field \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\" and click Button to Estimate$")
     public void iFilledTheFieldAndClickButtonToEstimate
-            (String localSSD,String dataCenterLocation,String commitedUsage) throws Throwable {
+            (String localSSD,String dataCenterLocation,String commitedUsage)  {
         calculatorPage.fillThiredAND(localSSD,dataCenterLocation,commitedUsage);
-        throw new PendingException();
+
     }
 
 
     @When("^I filled the field   \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\" in table$")
-    public void iFilledTheFieldInTable(String numberOfInstance,String whatInstunceFor,String softWare) throws Throwable {
+    public void iFilledTheFieldInTable(String numberOfInstance,String whatInstunceFor,String softWare) {
         calculatorPage.fillFirstAND(numberOfInstance,whatInstunceFor,softWare);
-        throw new PendingException();
+
     }
     @Then("^I should see  message  equal to \"([^\"]*)\"$")
-    public void iShouldSeeMessageEqualTo(String estimateTable) throws Throwable {
+    public void iShouldSeeMessageEqualTo(String estimateTable) {
         totalEstimateTable=calculatorPage.getTotalEstimatedCost();
         Assert.assertTrue(estimateTable.contains(totalEstimateTable));
-        throw new PendingException();
+
     }
     @Then("^I should see price in letter is equal with price on calculator page$")
     public void iShouldSeePriceInLetterIsEqualWithPriceOnCalculatorPage() {
@@ -82,5 +83,11 @@ public class CloudGoogleDefs {
         String coastFromEmail = tenMinuteMailPage.readTotalEstimateCostFromTenMinute();
                 Assert.assertTrue(totalEstimateTable.contains(String.valueOf(coastFromEmail)));
         calculatorPage.closeTenMinuteEmail();
+    }
+
+
+    @Then("^I should see logo Roche$")
+    public void iShouldSeeLogoRoche() {
+      Assert.assertTrue(  mainCloudPage.isLogoRocheExist());
     }
 }
