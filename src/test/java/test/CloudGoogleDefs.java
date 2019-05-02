@@ -1,16 +1,35 @@
 package test;
 
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import driver.DriverSingleton;
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import page.*;
 
-public class CloudGoogleDefs extends  CommonConditions{
-    
-    @Given("^I open CloudeGoogle page$")
-    public void iOpenCloudeGooglePage() {
-        mainCloudPage.openPage();
+public class CloudGoogleDefs {
+    protected WebDriver driver;
+    protected MainCloudPage mainCloudPage;
+    protected ProductsPage productsPage;
+    protected PricingPage pricingPage;
+    protected CalculatorPage calculatorPage;
+    protected TenMinuteMailPage tenMinuteMailPage;
+    String totalEstimateTable;
+
+    public CloudGoogleDefs() {
+        driver = DriverSingleton.getDriver();
+        mainCloudPage=new MainCloudPage(driver);
+        productsPage=new ProductsPage(driver);
+        pricingPage=new PricingPage(driver);
+        calculatorPage=new CalculatorPage(driver);
+        tenMinuteMailPage=new TenMinuteMailPage(driver);
+    }
+
+    @Given("^I open Cloud Google page$")
+    public void iOpenCloudGooglePage() {mainCloudPage.openPage();
     }
 
     @And("^I open Products page$")
@@ -28,31 +47,40 @@ public class CloudGoogleDefs extends  CommonConditions{
         pricingPage.pushPricingNavigationCalculators();
     }
 
-    @When("^I filled the field <numberOfInstance>,<whatInstunceFor>,<softWare>$")
-    public void iFilledTheFieldNumberOfInstanceWhatInstunceForSoftWare
-            (String numberOfInstance,String whatInstunceFor,String softWare ) {
-        calculatorPage.fillFirstAND(numberOfInstance,whatInstunceFor,softWare);
-    }
-
-    @And("^I filled the field <vMClass>,<instanceType>,<numberGPU>,<gPUType>$")
-    public void iFilledTheFieldVMClassInstanceTypeNumberGPUGPUType
-            (String vMClass,String instanceType,String numberGPU,String gPUType ) {
-
+    @And("^I filled the field \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\"$")
+    public void iFilledTheField
+            (String vMClass,String instanceType,String numberGPU,String gPUType ) throws Throwable {
         calculatorPage.fillSecondAND(vMClass,instanceType,numberGPU,gPUType);
+        throw new PendingException();
     }
 
-
-    @And("^I filled the field <localSSD>,<dataCenterLocation>,<commitedUsage> and click Button to Estimate$")
-    public void iFilledTheFieldLocalSSDDataCenterLocationCommitedUsageAndClickButtonToEstimate
-            (String localSSD,String dataCenterLocation,String commitedUsage) {
+    @And("^I filled the field \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\" and click Button to Estimate$")
+    public void iFilledTheFieldAndClickButtonToEstimate
+            (String localSSD,String dataCenterLocation,String commitedUsage) throws Throwable {
         calculatorPage.fillThiredAND(localSSD,dataCenterLocation,commitedUsage);
+        throw new PendingException();
     }
 
 
-    @Then("^I should see \"([^\"]*)\" message  equal to :Total Estimated Cost: USD (\\d+),(\\d+)\\.(\\d+) per (\\d+) month$")
-    public void iShouldSeeMessageEqualToTotalEstimatedCostUSDPerMonth (String arg0, int arg1, int arg2, int arg3, int arg4) throws Throwable {
-       String totalEstimateTable="Total Estimated Cost: USD 1,187.77 per 1 month";
-        Assert.assertTrue(totalEstimateTable.contains(calculatorPage.getTotalEstimatedCost()));
-        throw new cucumber.api.PendingException();
+    @When("^I filled the field   \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\" in table$")
+    public void iFilledTheFieldInTable(String numberOfInstance,String whatInstunceFor,String softWare) throws Throwable {
+        calculatorPage.fillFirstAND(numberOfInstance,whatInstunceFor,softWare);
+        throw new PendingException();
+    }
+    @Then("^I should see  message  equal to \"([^\"]*)\"$")
+    public void iShouldSeeMessageEqualTo(String estimateTable) throws Throwable {
+        totalEstimateTable=calculatorPage.getTotalEstimatedCost();
+        Assert.assertTrue(estimateTable.contains(totalEstimateTable));
+        throw new PendingException();
+    }
+    @Then("^I should see price in letter is equal with price on calculator page$")
+    public void iShouldSeePriceInLetterIsEqualWithPriceOnCalculatorPage() {
+        String emailFromTenMinute=calculatorPage.goToTenMinuteEmail()
+                .openPage()
+                .getemailFromTenMinute();
+        calculatorPage.setEmailFromTenMinuteMailToMailForm(emailFromTenMinute);
+        String coastFromEmail = tenMinuteMailPage.readTotalEstimateCostFromTenMinute();
+                Assert.assertTrue(totalEstimateTable.contains(String.valueOf(coastFromEmail)));
+        calculatorPage.closeTenMinuteEmail();
     }
 }

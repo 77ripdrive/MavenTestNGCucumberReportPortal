@@ -33,16 +33,16 @@ public  class CalculatorPage extends AbstractPage {
     @FindBy(xpath = "//div[@class='tab-holder compute' and @title='Compute Engine']")
     protected WebElement computeEngineOn;
 
-    @FindBy(id = "input_46")
+    @FindBy(xpath ="//input[@ng-model='listingCtrl.computeServer.quantity']" )
     protected WebElement numberOfInstans;
 
-    @FindBy(xpath = "//input[@id='input_47']")
+    @FindBy(xpath = "//input[@ng-model='listingCtrl.computeServer.label']")
     protected WebElement instancesForField;
 
-    @FindBy(xpath = "//*[@id='select_value_label_40']")
+    @FindBy(xpath = "//*[@id='select_61']")
     protected WebElement operatingSystem;
 
-    @FindBy(xpath = "//*[@id='select_value_label_41']/span[2]")
+    @FindBy(xpath = "//*[@id='select_65']")
     protected WebElement vmClassField;
 
     @FindBy(xpath ="//md-select[@placeholder='Instance type']")
@@ -57,10 +57,10 @@ public  class CalculatorPage extends AbstractPage {
     @FindBy(xpath = "//md-select[@placeholder='GPU type']")
     protected WebElement selectGpuType;
 
-    @FindBy(xpath = "//md-select[@placeholder='Local SSD']")
+    @FindBy(xpath = "//*[@id='select_value_label_46']")
     protected WebElement selectLocalSsd;
 
-    @FindBy(xpath = "//md-select[@placeholder='Datacenter location']/*[@id='select_value_label_44']/span[1]/div")
+    @FindBy(xpath = "//*[@id='select_value_label_47']/span[1]/div")
     protected WebElement selectDataCenterLocation;
 
     @FindBy(xpath= "//md-select[@placeholder='Committed usage']//span[1]/div")
@@ -102,9 +102,9 @@ public  class CalculatorPage extends AbstractPage {
     private  String preSelectInstanceType="//md-option[@value='%s']/div[1]";
     private  String preSelectNumberGPU="//md-option/div[@class='md-text ng-binding' and text()='%s']";
     private  String preSelectGPUType="//md-option/div[contains(text(),'%s')]";
-    private  String preSelectlocalSSD="//md-option/div[contains(text(),'%s')]";
+    private  String preSelectlocalSSD="//div[text()='%s']";
     private  String preSelectdataCenterLocation="//*[@class='md-overflow']//md-option/div[text()='%s']";
-    private  String preSelectCommitedUsage="//md-option/div[text()='%s']";
+    private  String preSelectCommitedUsage=".//md-option/div[text()='%s']";
 
     private CalculatorPage activateComputeEngine(){
         WebDriverWait wait = new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
