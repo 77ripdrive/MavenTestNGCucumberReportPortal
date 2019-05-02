@@ -19,6 +19,8 @@ public class CloudGoogleDefs {
     protected CalculatorPage calculatorPage;
     protected TenMinuteMailPage tenMinuteMailPage;
     String totalEstimateTable;
+    String emailFromTenMinute;
+    String coastFromEmail;
 
     public CloudGoogleDefs() {
         driver = DriverSingleton.getDriver();
@@ -76,11 +78,11 @@ public class CloudGoogleDefs {
     }
     @Then("^I should see price in letter is equal with price on calculator page$")
     public void iShouldSeePriceInLetterIsEqualWithPriceOnCalculatorPage() {
-        String emailFromTenMinute=calculatorPage.goToTenMinuteEmail()
+        emailFromTenMinute=calculatorPage.goToTenMinuteEmail()
                 .openPage()
                 .getemailFromTenMinute();
         calculatorPage.setEmailFromTenMinuteMailToMailForm(emailFromTenMinute);
-        String coastFromEmail = tenMinuteMailPage.readTotalEstimateCostFromTenMinute();
+        coastFromEmail = tenMinuteMailPage.readTotalEstimateCostFromTenMinute();
                 Assert.assertTrue(totalEstimateTable.contains(String.valueOf(coastFromEmail)));
         calculatorPage.closeTenMinuteEmail();
     }
