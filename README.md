@@ -1,15 +1,14 @@
-
 Java
 ==       project  --->:
 
-set PATH=%PATH%;C:\soft\maven\bin
 
-run NOW  in master branch
- mvn -Dbrowser=chrome -Dsurefire.suiteXmlFiles=src\test\resources\testng-smoke.xml -Denvironment=hC clean test
+
+run NOW  in 
+ mvn -Dbrowser=chrome  clean test
 
 
 BDD_Cucumber branch
 
-mvn -Dbrowser=chrome verify
+mvn -Dbrowser=chrome 
 
 https://github.com/ashenwgt/awesome-bdd-with-cucumber
