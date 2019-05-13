@@ -78,6 +78,7 @@ public class CloudGoogleDefs {
     }
     @Then("^I should see price in letter is equal with price on calculator page$")
     public void iShouldSeePriceInLetterIsEqualWithPriceOnCalculatorPage() {
+        totalEstimateTable=calculatorPage.getTotalEstimatedCost();
         emailFromTenMinute=calculatorPage.goToTenMinuteEmail()
                 .openPage()
                 .getemailFromTenMinute();
