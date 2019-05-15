@@ -1,17 +1,28 @@
 package test;
 
 import cucumber.api.PendingException;
+import cucumber.api.Scenario;
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import driver.DriverSingleton;
+import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
 import page.*;
+import reporting.MyLogger;
+
+import java.io.File;
+import java.io.IOException;
 
 public class CloudGoogleDefs {
+
     protected WebDriver driver;
     protected MainCloudPage mainCloudPage;
     protected ProductsPage productsPage;
@@ -21,6 +32,7 @@ public class CloudGoogleDefs {
     String totalEstimateTable;
     String emailFromTenMinute;
     String coastFromEmail;
+    private static final String SCREENSHOTS_NAME_TPL = "screenshots/scr";
 
     public CloudGoogleDefs() {
         driver = DriverSingleton.getDriver();
@@ -93,4 +105,32 @@ public class CloudGoogleDefs {
     public void iShouldSeeLogoRoche() {
       Assert.assertTrue(  mainCloudPage.isLogoRocheExist());
     }
+
+    @Before
+    public void initializeTest() {
+
+    }
+
+    @After
+    public void embedScreenshot(Scenario scenario) {
+        if (scenario.isFailed()) {
+            takeScreenshot();
+        }
+
+        DriverSingleton.closeDriver();
+    }
+    private void takeScreenshot() {
+        File screenshot = ((TakesScreenshot) DriverSingleton
+                .getDriver()).getScreenshotAs(OutputType.FILE);
+        try {
+            String screenshotName = SCREENSHOTS_NAME_TPL + System.nanoTime();
+            String scrPath = screenshotName + ".jpg";
+            File copy = new File(scrPath);
+            FileUtils.copyFile(screenshot, copy);
+            MyLogger.attach(scrPath, "Screenshot");
+        } catch (IOException e) {
+            MyLogger.error("Failed to make screenshot");
+        }
+    }
+
 }

@@ -1,19 +1,21 @@
 package page;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import reporting.MyLogger;
 
 import java.util.concurrent.TimeUnit;
 
 public class TenMinuteMailPage extends AbstractPage {
+
+    protected final int WAIT_TIMEOUT_SECONDS_FOR= 10;
     private final String BASE_URL = "https://10minutemail.net";
-    private final Logger logger = LogManager.getRootLogger();
+
     private Actions actions = new Actions(driver);
     public TenMinuteMailPage(WebDriver driver) {
         super(driver);
@@ -32,9 +34,10 @@ public class TenMinuteMailPage extends AbstractPage {
     }
 
     public String readTotalEstimateCostFromTenMinute() {
-        logger.info("Wait for GoogleEmail");
+        MyLogger.info("Wait for GoogleEmail");
+
         try {
-            TimeUnit.SECONDS.sleep(60);
+            TimeUnit.SECONDS.sleep(WAIT_TIMEOUT_SECONDS_FOR);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -42,13 +45,13 @@ public class TenMinuteMailPage extends AbstractPage {
         actions.moveToElement(tenMinuteMail);
         tenMinuteMail.click();
         String mailTotalEstimateCostFromTenMinuteEmail = mailTotalEstCost.getText();
-        logger.info("Email from GoogleCloud with Total Coast is checked"+mailTotalEstimateCostFromTenMinuteEmail);
+        MyLogger.info("Email from GoogleCloud with Total Coast is checked " + mailTotalEstimateCostFromTenMinuteEmail);
         return mailTotalEstimateCostFromTenMinuteEmail;
     }
     @Override
     public TenMinuteMailPage openPage() {
         driver.navigate().to(BASE_URL);
-        logger.info("TenMinuteMailPage opened");
+        MyLogger.info("TenMinuteMailPage opened" + BASE_URL);
         return new TenMinuteMailPage(driver);
     }
 }

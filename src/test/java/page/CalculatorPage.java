@@ -1,8 +1,7 @@
 package page;
 
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -12,16 +11,19 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import reporting.MyLogger;
 import service.LocatorCorrector;
 
 import java.util.ArrayList;
 import java.util.List;
 
+
 public  class CalculatorPage extends AbstractPage {
-    private final Logger logger = LogManager.getRootLogger();
-    Actions actions = new Actions(driver);
+
     private final String BASE_URL = "https://cloud.google.com/products/calculator/";
+
     ArrayList <String> windowHandle;
+
     public CalculatorPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(this.driver, this);
@@ -145,20 +147,20 @@ public  class CalculatorPage extends AbstractPage {
     private CalculatorPage setAddGPU(String numberGPU,String gPUType){
         ripplyAddGpus.click();
         selectValueNumberOfGpus.click();
-        logger.info("numberGPU");
+        MyLogger.info("numberGPU is : " + numberGPU);
         driver.findElement(LocatorCorrector.masterForLocators(preSelectNumberGPU,numberGPU)).click();
         selectGpuType.click();
         waitUntilElementPresent(LocatorCorrector.masterForLocators
                 (preSelectGPUType,gPUType)).click();
-        logger.info("gPUType"+gPUType);
+        MyLogger.info("gPUType : " + gPUType);
         return this;
     }
     private CalculatorPage setLocacSSD(String localSSD ){
         selectLocalSsd.click();
-        logger.info("setLocacSSD");
+        MyLogger.info("setLocacSSD");
         waitUntilElementPresent(LocatorCorrector.masterForLocators
                 (preSelectlocalSSD,localSSD)).click();
-                logger.info("localSSD");
+                MyLogger.info("localSSD is :  " + localSSD);
         return this;
     }
 
@@ -173,13 +175,14 @@ public  class CalculatorPage extends AbstractPage {
         List <WebElement> links = driver.findElements
                 (LocatorCorrector.masterForLocators(preSelectCommitedUsage,commitedUsage));
         links.get(1).click();
+        MyLogger.info("setCommitedUsage is :" + commitedUsage);
         return this;
     }
 
 
     public CalculatorPage fillFirstAND
             (String numberOfInstance,String whatInstunceFor,String softWare) {
-        logger.info("Calculators page opened");
+        MyLogger.info("Calculators page opened is :" + BASE_URL);
         driver.switchTo().frame("idIframe");
         this.activateComputeEngine();
         this.setNumberOfInstances(numberOfInstance);
@@ -202,13 +205,11 @@ public  class CalculatorPage extends AbstractPage {
         this.setDataCenter(dataCenterLocation);
         this.setCommitedUsage(commitedUsage);
         clickButtonAddToEstimate.click();
+        MyLogger.info("Estimate is complete");
         return new CalculatorPage(driver);
     }
-    public String getTotalEstimatedCost() { return waitUntilElementPresent(tableTotalEstimateCost).getText();    }
-
-
-
-
+    public String getTotalEstimatedCost() {
+        return waitUntilElementPresent(tableTotalEstimateCost).getText();    }
 
     public TenMinuteMailPage goToTenMinuteEmail() {
         emailEstimate.click();
@@ -226,7 +227,7 @@ public  class CalculatorPage extends AbstractPage {
         buttonSendEmailCalculator.click();
         driver.switchTo().defaultContent();
         switchingBetweenWindow(1);
-        logger.info("Move to 10minute");
+        MyLogger.info("Move to 10minute : " + emailAdress);
         return new TenMinuteMailPage(driver);
     }
 
