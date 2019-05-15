@@ -30,6 +30,8 @@ public class ServiceHooks {
                     e.printStackTrace();
                 }
             }
+
+            DriverSingleton.closeDriver();
         }
     private void saveScreenshot(){
         File screenCapture = ((TakesScreenshot) DriverSingleton
