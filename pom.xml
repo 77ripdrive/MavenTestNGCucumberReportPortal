@@ -109,7 +109,7 @@
 
                     <testFailureIgnore>false</testFailureIgnore>
                     <suiteXmlFiles>
-                        <xmlFile>src/main/resources/suites/tests.xml</xmlFile>
+                        <xmlFile>src/test/resources/suites/tests.xml</xmlFile>
                     </suiteXmlFiles>
                     <!-- ADD working directory to get TestNG know we to find suite files -->
                     <workingDirectory>./</workingDirectory>

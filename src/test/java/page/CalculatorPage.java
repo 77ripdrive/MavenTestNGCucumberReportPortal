@@ -20,6 +20,7 @@ import java.util.List;
 
 public  class CalculatorPage extends AbstractPage {
 
+    private Actions actions = new Actions(driver);
     private final String BASE_URL = "https://cloud.google.com/products/calculator/";
 
     ArrayList <String> windowHandle;
@@ -41,10 +42,10 @@ public  class CalculatorPage extends AbstractPage {
     @FindBy(xpath = "//input[@ng-model='listingCtrl.computeServer.label']")
     protected WebElement instancesForField;
 
-    @FindBy(xpath = "//*[@id='select_61']")
+    @FindBy(xpath = "//*[@id='select_value_label_43']/span[1]/div")
     protected WebElement operatingSystem;
 
-    @FindBy(xpath = "//*[@id='select_65']")
+    @FindBy(xpath = "//*[@id='select_value_label_44']/span[1]/div")
     protected WebElement vmClassField;
 
     @FindBy(xpath ="//md-select[@placeholder='Instance type']")
@@ -59,16 +60,16 @@ public  class CalculatorPage extends AbstractPage {
     @FindBy(xpath = "//md-select[@placeholder='GPU type']")
     protected WebElement selectGpuType;
 
-    @FindBy(xpath = "//*[@id='select_value_label_46']")
+    @FindBy(xpath = "//*[@id='select_value_label_47']/span[1]/div")
     protected WebElement selectLocalSsd;
 
-    @FindBy(xpath = "//*[@id='select_value_label_47']/span[1]/div")
+    @FindBy(xpath = "//*[@id='select_value_label_85']/span[1]/div")
     protected WebElement selectDataCenterLocation;
 
-    @FindBy(xpath= "//md-select[@placeholder='Committed usage']//span[1]/div")
+    @FindBy(xpath= "//*[@id='select_value_label_49']/span[1]/div")
     protected WebElement selectCommitedUsage;
 
-    @FindBy(xpath = "//form/div[11]/button[@aria-label='Add to Estimate']")
+    @FindBy(xpath = "//*[@id='mainForm']//div[13]/button[@aria-label='Add to Estimate']")
     protected WebElement clickButtonAddToEstimate;
 
     @FindBy(xpath = "//h2[@class='md-title']/b[@class='ng-binding']")
@@ -99,12 +100,12 @@ public  class CalculatorPage extends AbstractPage {
     protected WebElement buttonSendEmailCalculator;
 
 
-    private  String preSelectSoftWareType="//md-option/div[text()='%s']";
-    private  String preSelectVMClass="//md-option/div[text()='%s']";
+    private  String preSelectSoftWareType="//md-option/div[contains(text(),'%s')]";
+    private  String preSelectVMClass="//md-option/div[contains(text(),'%s')]";
     private  String preSelectInstanceType="//md-option[@value='%s']/div[1]";
-    private  String preSelectNumberGPU="//md-option/div[@class='md-text ng-binding' and text()='%s']";
+    private  String preSelectNumberGPU="//*[@id='select_option_339']/div[contains(text(),'%s')]";
     private  String preSelectGPUType="//md-option/div[contains(text(),'%s')]";
-    private  String preSelectlocalSSD="//div[text()='%s']";
+    private  String preSelectlocalSSD="//div[contains(text(),'%s')]";
     private  String preSelectdataCenterLocation="//*[@class='md-overflow']//md-option/div[text()='%s']";
     private  String preSelectCommitedUsage=".//md-option/div[text()='%s']";
 
@@ -124,8 +125,10 @@ public  class CalculatorPage extends AbstractPage {
     }
     private CalculatorPage setOS(String softWare){
        operatingSystem.click();
-       driver.findElement(LocatorCorrector
+       waitUntilElementPresent(LocatorCorrector
                .masterForLocators(preSelectSoftWareType,softWare)).click();
+       MyLogger.info("OS is :" + softWare);
+
         return this;
     }
     private CalculatorPage setVmClass(String vmClass) {
@@ -134,21 +137,22 @@ public  class CalculatorPage extends AbstractPage {
         List <WebElement> links = driver.findElements
                 (LocatorCorrector.masterForLocators(preSelectVMClass,vmClass));
         links.get(1).click();
-
+        MyLogger.info("VmClass is : " + vmClass);
         return this;
     }
 
     private CalculatorPage setInstanceType(String instanceType){
         dropDownInstanceType.click();
-        driver.findElement(LocatorCorrector
+        waitUntilElementPresent(LocatorCorrector
                 .masterForLocators(preSelectInstanceType,instanceType)).click();
+        MyLogger.info("InstanceType is : " + instanceType);
         return this;
     }
     private CalculatorPage setAddGPU(String numberGPU,String gPUType){
         ripplyAddGpus.click();
         selectValueNumberOfGpus.click();
         MyLogger.info("numberGPU is : " + numberGPU);
-        driver.findElement(LocatorCorrector.masterForLocators(preSelectNumberGPU,numberGPU)).click();
+        waitUntilElementPresent(LocatorCorrector.masterForLocators(preSelectNumberGPU,numberGPU)).click();
         selectGpuType.click();
         waitUntilElementPresent(LocatorCorrector.masterForLocators
                 (preSelectGPUType,gPUType)).click();
@@ -158,24 +162,30 @@ public  class CalculatorPage extends AbstractPage {
     private CalculatorPage setLocacSSD(String localSSD ){
         selectLocalSsd.click();
         MyLogger.info("setLocacSSD");
-        waitUntilElementPresent(LocatorCorrector.masterForLocators
-                (preSelectlocalSSD,localSSD)).click();
+
+        actions.moveToElement(driver.findElement(LocatorCorrector.masterForLocators
+                (preSelectlocalSSD,localSSD))).click();
+
                 MyLogger.info("localSSD is :  " + localSSD);
         return this;
     }
 
     private CalculatorPage setDataCenter(String dataCenter){
-        selectDataCenterLocation.click();
-        waitUntilElementPresent(LocatorCorrector.masterForLocators
-                (preSelectdataCenterLocation,dataCenter)).click();
+        actions.moveToElement(selectDataCenterLocation).click();
+        MyLogger.info("dataCenter");
+        actions.moveToElement(driver.findElement(LocatorCorrector.masterForLocators
+                (preSelectlocalSSD,dataCenter))).click();
+        MyLogger.info("DataCenter is :" + dataCenter);
+
         return this;
     }
     private CalculatorPage setCommitedUsage(String commitedUsage){
         selectCommitedUsage.click();
+        MyLogger.info("setCommitedUsage");
         List <WebElement> links = driver.findElements
                 (LocatorCorrector.masterForLocators(preSelectCommitedUsage,commitedUsage));
         links.get(1).click();
-        MyLogger.info("setCommitedUsage is :" + commitedUsage);
+        MyLogger.info("CommitedUsage is :" + commitedUsage);
         return this;
     }
 

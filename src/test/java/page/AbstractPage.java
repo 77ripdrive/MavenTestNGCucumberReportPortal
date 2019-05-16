@@ -30,6 +30,9 @@ public abstract class AbstractPage {
     protected void highlightElement(WebElement webElement) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].style.border='5px solid green'", webElement);
     }
+    public void waitForElementEnabled(By by) {
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions.elementToBeClickable(by));
+    }
 
     protected void unHighlightElement(WebElement webElement) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].style.border='0px'", webElement);

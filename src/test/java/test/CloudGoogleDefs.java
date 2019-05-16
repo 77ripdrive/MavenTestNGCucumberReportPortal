@@ -1,6 +1,6 @@
 package test;
 
-import cucumber.api.PendingException;
+
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
@@ -11,9 +11,7 @@ import cucumber.api.java.en.When;
 import driver.DriverSingleton;
 import org.apache.commons.io.FileUtils;
 
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
@@ -23,6 +21,8 @@ import util.TestListener;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Listeners({TestListener.class})
 public class CloudGoogleDefs {
@@ -36,7 +36,7 @@ public class CloudGoogleDefs {
     String totalEstimateTable;
     String emailFromTenMinute;
     String coastFromEmail;
-    private static final String SCREENSHOTS_NAME_TPL = "screenshots/scr";
+
 
     public CloudGoogleDefs() {
         driver = DriverSingleton.getDriver();
@@ -118,23 +118,28 @@ public class CloudGoogleDefs {
     @After
     public void embedScreenshot(Scenario scenario) {
         if (scenario.isFailed()) {
-            takeScreenshot();
+
+            saveScreenshot();
         }
 
         DriverSingleton.closeDriver();
     }
-    private void takeScreenshot() {
-        File screenshot = ((TakesScreenshot) DriverSingleton
-                .getDriver()).getScreenshotAs(OutputType.FILE);
+    private void saveScreenshot(){
+        File screenCapture = ((TakesScreenshot) DriverSingleton
+                .getDriver())
+                .getScreenshotAs(OutputType.FILE);
         try {
-            String screenshotName = SCREENSHOTS_NAME_TPL + System.nanoTime();
-            String scrPath = screenshotName + ".jpg";
-            File copy = new File(scrPath);
-            FileUtils.copyFile(screenshot, copy);
-            MyLogger.attach(scrPath, "Screenshot");
+            FileUtils.copyFile(screenCapture, new File(
+                    ".//target/screenshots/"
+                            + getCurrentTimeAsString() +
+                            ".png"));
         } catch (IOException e) {
-            MyLogger.error("Failed to make screenshot");
+            e.getLocalizedMessage();
         }
+    }
+    private String getCurrentTimeAsString(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern( "uuuu-MM-dd_HH-mm-ss" );
+        return ZonedDateTime.now().format(formatter);
     }
 
 }

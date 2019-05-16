@@ -5,14 +5,14 @@ Feature: Cloud
 SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
 SLF4J: Defaulting to no-operation (NOP) logger implementation
 SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
-May 16, 2019 11:54:29 AM java.util.prefs.WindowsPreferences <init>
+May 16, 2019 2:58:24 PM java.util.prefs.WindowsPreferences <init>
 WARNING: Could not open/create prefs root node Software\JavaSoft\Prefs at root 0x80000002. Windows RegCreateKeyEx(...) returned error code 5.
-Starting ChromeDriver 74.0.3729.6 (255758eccf3d244491b8a1317aa76e1ce10d57e9-refs/branch-heads/3729@{#29}) on port 30857
+Starting ChromeDriver 74.0.3729.6 (255758eccf3d244491b8a1317aa76e1ce10d57e9-refs/branch-heads/3729@{#29}) on port 24749
 Only local connections are allowed.
 Please protect ports used by ChromeDriver and related test frameworks to prevent access by malicious code.
-May 16, 2019 11:54:32 AM org.openqa.selenium.remote.ProtocolHandshake createSession
+May 16, 2019 2:58:28 PM org.openqa.selenium.remote.ProtocolHandshake createSession
 INFO: Detected dialect: OSS
-[11:54:37] INFO  (MyLogger.java) - MainCloudPage openedhttps://cloud.google.com
+[14:58:32] INFO  (MyLogger.java) - MainCloudPage openedhttps://cloud.google.com
 
   Background:                      # src/test/resources/features/Cloud.feature:6
     Given I open Cloud Google page # CloudGoogleDefs.iOpenCloudGooglePage()
@@ -30,24 +30,29 @@ INFO: Detected dialect: OSS
     Then I should see  message  equal to "Total Estimated Cost: USD 1,187.77 per 1 month"
 
     Examples: 
-Starting ChromeDriver 74.0.3729.6 (255758eccf3d244491b8a1317aa76e1ce10d57e9-refs/branch-heads/3729@{#29}) on port 22054
+Starting ChromeDriver 74.0.3729.6 (255758eccf3d244491b8a1317aa76e1ce10d57e9-refs/branch-heads/3729@{#29}) on port 16845
 Only local connections are allowed.
 Please protect ports used by ChromeDriver and related test frameworks to prevent access by malicious code.
-May 16, 2019 11:54:41 AM org.openqa.selenium.remote.ProtocolHandshake createSession
+May 16, 2019 2:58:36 PM org.openqa.selenium.remote.ProtocolHandshake createSession
 INFO: Detected dialect: OSS
-[11:54:45] INFO  (MyLogger.java) - MainCloudPage openedhttps://cloud.google.com
+[14:58:40] INFO  (MyLogger.java) - MainCloudPage openedhttps://cloud.google.com
 
   Background:                      # src/test/resources/features/Cloud.feature:6
     Given I open Cloud Google page # CloudGoogleDefs.iOpenCloudGooglePage()
-[11:54:45] INFO  (MyLogger.java) - Products page openedhttps://cloud.google.com/products/
-[11:54:47] INFO  (MyLogger.java) - Pricing page openedhttps://cloud.google.com/pricing/
-[11:54:52] INFO  (MyLogger.java) - Calculators page opened is :https://cloud.google.com/products/calculator/
-[11:54:54] INFO  (MyLogger.java) - numberGPU is : 1
-[11:54:56] INFO  (MyLogger.java) - gPUType : NVIDIA_Tesla_V100
-[11:54:56] INFO  (MyLogger.java) - setLocacSSD
-[11:54:56] INFO  (MyLogger.java) - localSSD is :  2x375_GB
-[11:54:58] INFO  (MyLogger.java) - setCommitedUsage is :1_Year
-[11:54:58] INFO  (MyLogger.java) - Estimate is complete
+[14:58:40] INFO  (MyLogger.java) - Products page openedhttps://cloud.google.com/products/
+[14:58:42] INFO  (MyLogger.java) - Pricing page openedhttps://cloud.google.com/pricing/
+[14:58:47] INFO  (MyLogger.java) - Calculators page opened is :https://cloud.google.com/products/calculator/
+[14:58:49] INFO  (MyLogger.java) - OS is :Free:_Debian,_CentOS,_CoreOS,_Ubuntu,_or_other_User_Provided_OS
+[14:58:49] INFO  (MyLogger.java) - VmClass is : Regular
+[14:58:50] INFO  (MyLogger.java) - InstanceType is : CP-COMPUTEENGINE-VMIMAGE-N1-STANDARD-8
+[14:58:50] INFO  (MyLogger.java) - numberGPU is : 1
+[14:58:52] INFO  (MyLogger.java) - gPUType : NVIDIA_Tesla_V100
+[14:58:52] INFO  (MyLogger.java) - setLocacSSD
+[14:58:52] INFO  (MyLogger.java) - localSSD is :  2x375_GB
+[14:58:52] INFO  (MyLogger.java) - dataCenter
+[14:58:52] INFO  (MyLogger.java) - DataCenter is :Frankfurt_(europe-west3)
+[14:58:52] INFO  (MyLogger.java) - setCommitedUsage
+[14:58:52] INFO  (MyLogger.java) - CommitedUsage is :1_Year
 
   Scenario Outline: The estimated amount equals input                                                               # src/test/resources/features/Cloud.feature:24
     And I open Products page                                                                                        # CloudGoogleDefs.iOpenProductsPage()
@@ -56,6 +61,40 @@ INFO: Detected dialect: OSS
     When I filled the field   "4","none","Free:_Debian,_CentOS,_CoreOS,_Ubuntu,_or_other_User_Provided_OS" in table # CloudGoogleDefs.iFilledTheFieldInTable(String,String,String)
     And I filled the field "Regular","CP-COMPUTEENGINE-VMIMAGE-N1-STANDARD-8","1","NVIDIA_Tesla_V100"               # CloudGoogleDefs.iFilledTheField(String,String,String,String)
     And I filled the field "2x375_GB","Frankfurt_(europe-west3)","1_Year" and click Button to Estimate              # CloudGoogleDefs.iFilledTheFieldAndClickButtonToEstimate(String,String,String)
+      org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@id='mainForm']//div[13]/button[@aria-label='Add to Estimate']"}
+        (Session info: chrome=74.0.3729.131)
+        (Driver info: chromedriver=74.0.3729.6 (255758eccf3d244491b8a1317aa76e1ce10d57e9-refs/branch-heads/3729@{#29}),platform=Windows NT 10.0.17763 x86_64) (WARNING: The server did not provide any stacktrace information)
+      Command duration or timeout: 0 milliseconds
+      For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+      Build info: version: '3.141.0', revision: '2ecb7d9a', time: '2018-10-31T20:09:30'
+      System info: host: 'EPBYMINW3610', ip: '10.6.102.64', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_201'
+      Driver info: org.openqa.selenium.chrome.ChromeDriver
+      Capabilities {acceptInsecureCerts: false, acceptSslCerts: false, applicationCacheEnabled: false, browserConnectionEnabled: false, browserName: chrome, chrome: {chromedriverVersion: 74.0.3729.6 (255758eccf3d24..., userDataDir: C:\Users\GLEB_T~1\AppData\L...}, cssSelectorsEnabled: true, databaseEnabled: false, goog:chromeOptions: {debuggerAddress: localhost:55304}, handlesAlerts: true, hasTouchScreen: false, javascriptEnabled: true, locationContextEnabled: true, mobileEmulationEnabled: false, nativeEvents: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: XP, platformName: XP, proxy: Proxy(), rotatable: false, setWindowRect: true, strictFileInteractability: false, takesHeapSnapshot: true, takesScreenshot: true, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unexpectedAlertBehaviour: ignore, unhandledPromptBehavior: ignore, version: 74.0.3729.131, webStorageEnabled: true}
+      Session ID: 4e6315456674aeb1fa9321c59f0a0da6
+      *** Element info: {Using=xpath, value=//*[@id='mainForm']//div[13]/button[@aria-label='Add to Estimate']}
+      	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+      	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+      	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+      	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+      	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:214)
+      	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:166)
+      	at org.openqa.selenium.remote.http.JsonHttpResponseCodec.reconstructValue(JsonHttpResponseCodec.java:40)
+      	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:80)
+      	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:44)
+      	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+      	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+      	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+      	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+      	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
+      	at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+      	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+      	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
+      	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+      	at com.sun.proxy.$Proxy20.click(Unknown Source)
+      	at page.CalculatorPage.fillThiredAND(CalculatorPage.java:217)
+      	at test.CloudGoogleDefs.iFilledTheFieldAndClickButtonToEstimate(CloudGoogleDefs.java:79)
+      	at ?.And I filled the field "2x375_GB","Frankfurt_(europe-west3)","1_Year" and click Button to Estimate(src/test/resources/features/Cloud.feature:19)
+      
     Then I should see  message  equal to "Total Estimated Cost: USD 1,187.77 per 1 month"                           # CloudGoogleDefs.iShouldSeeMessageEqualTo(String)
 
   Scenario Outline: Email from Google Cloud with certain parameters                                           # src/test/resources/features/Cloud.feature:28
@@ -68,28 +107,29 @@ INFO: Detected dialect: OSS
     Then I should see price in letter is equal with price on calculator page
 
     Examples: 
-Starting ChromeDriver 74.0.3729.6 (255758eccf3d244491b8a1317aa76e1ce10d57e9-refs/branch-heads/3729@{#29}) on port 24463
+Starting ChromeDriver 74.0.3729.6 (255758eccf3d244491b8a1317aa76e1ce10d57e9-refs/branch-heads/3729@{#29}) on port 17167
 Only local connections are allowed.
 Please protect ports used by ChromeDriver and related test frameworks to prevent access by malicious code.
-May 16, 2019 11:55:02 AM org.openqa.selenium.remote.ProtocolHandshake createSession
+May 16, 2019 2:58:56 PM org.openqa.selenium.remote.ProtocolHandshake createSession
 INFO: Detected dialect: OSS
-[11:55:06] INFO  (MyLogger.java) - MainCloudPage openedhttps://cloud.google.com
+[14:59:00] INFO  (MyLogger.java) - MainCloudPage openedhttps://cloud.google.com
 
   Background:                      # src/test/resources/features/Cloud.feature:6
     Given I open Cloud Google page # CloudGoogleDefs.iOpenCloudGooglePage()
-[11:55:06] INFO  (MyLogger.java) - Products page openedhttps://cloud.google.com/products/
-[11:55:08] INFO  (MyLogger.java) - Pricing page openedhttps://cloud.google.com/pricing/
-[11:55:12] INFO  (MyLogger.java) - Calculators page opened is :https://cloud.google.com/products/calculator/
-[11:55:14] INFO  (MyLogger.java) - numberGPU is : 1
-[11:55:15] INFO  (MyLogger.java) - gPUType : NVIDIA_Tesla_V100
-[11:55:15] INFO  (MyLogger.java) - setLocacSSD
-[11:55:16] INFO  (MyLogger.java) - localSSD is :  2x375_GB
-[11:55:17] INFO  (MyLogger.java) - setCommitedUsage is :1_Year
-[11:55:18] INFO  (MyLogger.java) - Estimate is complete
-[11:55:21] INFO  (MyLogger.java) - TenMinuteMailPage openedhttps://10minutemail.net
-[11:55:22] INFO  (MyLogger.java) - Move to 10minute : whr52905@cndps.com
-[11:55:22] INFO  (MyLogger.java) - Wait for GoogleEmail
-[11:56:12] INFO  (MyLogger.java) - Email from GoogleCloud with Total Coast is checked USD 1,187.77
+[14:59:00] INFO  (MyLogger.java) - Products page openedhttps://cloud.google.com/products/
+[14:59:02] INFO  (MyLogger.java) - Pricing page openedhttps://cloud.google.com/pricing/
+[14:59:06] INFO  (MyLogger.java) - Calculators page opened is :https://cloud.google.com/products/calculator/
+[14:59:08] INFO  (MyLogger.java) - OS is :Free:_Debian,_CentOS,_CoreOS,_Ubuntu,_or_other_User_Provided_OS
+[14:59:08] INFO  (MyLogger.java) - VmClass is : Regular
+[14:59:09] INFO  (MyLogger.java) - InstanceType is : CP-COMPUTEENGINE-VMIMAGE-N1-STANDARD-8
+[14:59:10] INFO  (MyLogger.java) - numberGPU is : 1
+[14:59:11] INFO  (MyLogger.java) - gPUType : NVIDIA_Tesla_V100
+[14:59:12] INFO  (MyLogger.java) - setLocacSSD
+[14:59:12] INFO  (MyLogger.java) - localSSD is :  2x375_GB
+[14:59:12] INFO  (MyLogger.java) - dataCenter
+[14:59:12] INFO  (MyLogger.java) - DataCenter is :Frankfurt_(europe-west3)
+[14:59:12] INFO  (MyLogger.java) - setCommitedUsage
+[14:59:12] INFO  (MyLogger.java) - CommitedUsage is :1_Year
 
   Scenario Outline: Email from Google Cloud with certain parameters                                                 # src/test/resources/features/Cloud.feature:38
     And I open Products page                                                                                        # CloudGoogleDefs.iOpenProductsPage()
@@ -98,15 +138,194 @@ INFO: Detected dialect: OSS
     When I filled the field   "4","none","Free:_Debian,_CentOS,_CoreOS,_Ubuntu,_or_other_User_Provided_OS" in table # CloudGoogleDefs.iFilledTheFieldInTable(String,String,String)
     And I filled the field "Regular","CP-COMPUTEENGINE-VMIMAGE-N1-STANDARD-8","1","NVIDIA_Tesla_V100"               # CloudGoogleDefs.iFilledTheField(String,String,String,String)
     And I filled the field "2x375_GB","Frankfurt_(europe-west3)","1_Year" and click Button to Estimate              # CloudGoogleDefs.iFilledTheFieldAndClickButtonToEstimate(String,String,String)
+      org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@id='mainForm']//div[13]/button[@aria-label='Add to Estimate']"}
+        (Session info: chrome=74.0.3729.131)
+        (Driver info: chromedriver=74.0.3729.6 (255758eccf3d244491b8a1317aa76e1ce10d57e9-refs/branch-heads/3729@{#29}),platform=Windows NT 10.0.17763 x86_64) (WARNING: The server did not provide any stacktrace information)
+      Command duration or timeout: 0 milliseconds
+      For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+      Build info: version: '3.141.0', revision: '2ecb7d9a', time: '2018-10-31T20:09:30'
+      System info: host: 'EPBYMINW3610', ip: '10.6.102.64', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_201'
+      Driver info: org.openqa.selenium.chrome.ChromeDriver
+      Capabilities {acceptInsecureCerts: false, acceptSslCerts: false, applicationCacheEnabled: false, browserConnectionEnabled: false, browserName: chrome, chrome: {chromedriverVersion: 74.0.3729.6 (255758eccf3d24..., userDataDir: C:\Users\GLEB_T~1\AppData\L...}, cssSelectorsEnabled: true, databaseEnabled: false, goog:chromeOptions: {debuggerAddress: localhost:55364}, handlesAlerts: true, hasTouchScreen: false, javascriptEnabled: true, locationContextEnabled: true, mobileEmulationEnabled: false, nativeEvents: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: XP, platformName: XP, proxy: Proxy(), rotatable: false, setWindowRect: true, strictFileInteractability: false, takesHeapSnapshot: true, takesScreenshot: true, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unexpectedAlertBehaviour: ignore, unhandledPromptBehavior: ignore, version: 74.0.3729.131, webStorageEnabled: true}
+      Session ID: af81f93f0c213b6870fb43a65ed5f91e
+      *** Element info: {Using=xpath, value=//*[@id='mainForm']//div[13]/button[@aria-label='Add to Estimate']}
+      	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+      	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+      	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+      	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+      	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:214)
+      	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:166)
+      	at org.openqa.selenium.remote.http.JsonHttpResponseCodec.reconstructValue(JsonHttpResponseCodec.java:40)
+      	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:80)
+      	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:44)
+      	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+      	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+      	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+      	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+      	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
+      	at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+      	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+      	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
+      	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+      	at com.sun.proxy.$Proxy20.click(Unknown Source)
+      	at page.CalculatorPage.fillThiredAND(CalculatorPage.java:217)
+      	at test.CloudGoogleDefs.iFilledTheFieldAndClickButtonToEstimate(CloudGoogleDefs.java:79)
+      	at ?.And I filled the field "2x375_GB","Frankfurt_(europe-west3)","1_Year" and click Button to Estimate(src/test/resources/features/Cloud.feature:34)
+      
     Then I should see price in letter is equal with price on calculator page                                        # CloudGoogleDefs.iShouldSeePriceInLetterIsEqualWithPriceOnCalculatorPage()
 
-3 Scenarios (3 passed)
-18 Steps (18 passed)
-1m43.773s
+cucumber.runtime.CucumberException: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@id='mainForm']//div[13]/button[@aria-label='Add to Estimate']"}
+  (Session info: chrome=74.0.3729.131)
+  (Driver info: chromedriver=74.0.3729.6 (255758eccf3d244491b8a1317aa76e1ce10d57e9-refs/branch-heads/3729@{#29}),platform=Windows NT 10.0.17763 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.0', revision: '2ecb7d9a', time: '2018-10-31T20:09:30'
+System info: host: 'EPBYMINW3610', ip: '10.6.102.64', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_201'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, acceptSslCerts: false, applicationCacheEnabled: false, browserConnectionEnabled: false, browserName: chrome, chrome: {chromedriverVersion: 74.0.3729.6 (255758eccf3d24..., userDataDir: C:\Users\GLEB_T~1\AppData\L...}, cssSelectorsEnabled: true, databaseEnabled: false, goog:chromeOptions: {debuggerAddress: localhost:55304}, handlesAlerts: true, hasTouchScreen: false, javascriptEnabled: true, locationContextEnabled: true, mobileEmulationEnabled: false, nativeEvents: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: XP, platformName: XP, proxy: Proxy(), rotatable: false, setWindowRect: true, strictFileInteractability: false, takesHeapSnapshot: true, takesScreenshot: true, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unexpectedAlertBehaviour: ignore, unhandledPromptBehavior: ignore, version: 74.0.3729.131, webStorageEnabled: true}
+Session ID: 4e6315456674aeb1fa9321c59f0a0da6
+*** Element info: {Using=xpath, value=//*[@id='mainForm']//div[13]/button[@aria-label='Add to Estimate']}
+
+	at cucumber.api.testng.TestNGCucumberRunner.runCucumber(TestNGCucumberRunner.java:69)
+	at cucumber.api.testng.AbstractTestNGCucumberTests.feature(AbstractTestNGCucumberTests.java:21)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:583)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:719)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:989)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+	at org.testng.TestRunner.privateRun(TestRunner.java:648)
+	at org.testng.TestRunner.run(TestRunner.java:505)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+	at org.testng.TestNG.runSuites(TestNG.java:1049)
+	at org.testng.TestNG.run(TestNG.java:1017)
+	at org.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:73)
+	at org.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:123)
+Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@id='mainForm']//div[13]/button[@aria-label='Add to Estimate']"}
+  (Session info: chrome=74.0.3729.131)
+  (Driver info: chromedriver=74.0.3729.6 (255758eccf3d244491b8a1317aa76e1ce10d57e9-refs/branch-heads/3729@{#29}),platform=Windows NT 10.0.17763 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.0', revision: '2ecb7d9a', time: '2018-10-31T20:09:30'
+System info: host: 'EPBYMINW3610', ip: '10.6.102.64', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_201'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, acceptSslCerts: false, applicationCacheEnabled: false, browserConnectionEnabled: false, browserName: chrome, chrome: {chromedriverVersion: 74.0.3729.6 (255758eccf3d24..., userDataDir: C:\Users\GLEB_T~1\AppData\L...}, cssSelectorsEnabled: true, databaseEnabled: false, goog:chromeOptions: {debuggerAddress: localhost:55304}, handlesAlerts: true, hasTouchScreen: false, javascriptEnabled: true, locationContextEnabled: true, mobileEmulationEnabled: false, nativeEvents: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: XP, platformName: XP, proxy: Proxy(), rotatable: false, setWindowRect: true, strictFileInteractability: false, takesHeapSnapshot: true, takesScreenshot: true, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unexpectedAlertBehaviour: ignore, unhandledPromptBehavior: ignore, version: 74.0.3729.131, webStorageEnabled: true}
+Session ID: 4e6315456674aeb1fa9321c59f0a0da6
+*** Element info: {Using=xpath, value=//*[@id='mainForm']//div[13]/button[@aria-label='Add to Estimate']}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:214)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:166)
+	at org.openqa.selenium.remote.http.JsonHttpResponseCodec.reconstructValue(JsonHttpResponseCodec.java:40)
+	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:80)
+	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:44)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+	at com.sun.proxy.$Proxy20.click(Unknown Source)
+	at page.CalculatorPage.fillThiredAND(CalculatorPage.java:217)
+	at test.CloudGoogleDefs.iFilledTheFieldAndClickButtonToEstimate(CloudGoogleDefs.java:79)
+	at ?.And I filled the field "2x375_GB","Frankfurt_(europe-west3)","1_Year" and click Button to Estimate(src/test/resources/features/Cloud.feature:19)
+
+
+Failed scenarios:
+src/test/resources/features/Cloud.feature:24 # Scenario Outline: The estimated amount equals input
+src/test/resources/features/Cloud.feature:38 # Scenario Outline: Email from Google Cloud with certain parameters
+
+3 Scenarios (2 failed, 1 passed)
+18 Steps (2 failed, 2 skipped, 14 passed)
+0m48.926s
+
+org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@id='mainForm']//div[13]/button[@aria-label='Add to Estimate']"}
+  (Session info: chrome=74.0.3729.131)
+  (Driver info: chromedriver=74.0.3729.6 (255758eccf3d244491b8a1317aa76e1ce10d57e9-refs/branch-heads/3729@{#29}),platform=Windows NT 10.0.17763 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.0', revision: '2ecb7d9a', time: '2018-10-31T20:09:30'
+System info: host: 'EPBYMINW3610', ip: '10.6.102.64', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_201'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, acceptSslCerts: false, applicationCacheEnabled: false, browserConnectionEnabled: false, browserName: chrome, chrome: {chromedriverVersion: 74.0.3729.6 (255758eccf3d24..., userDataDir: C:\Users\GLEB_T~1\AppData\L...}, cssSelectorsEnabled: true, databaseEnabled: false, goog:chromeOptions: {debuggerAddress: localhost:55304}, handlesAlerts: true, hasTouchScreen: false, javascriptEnabled: true, locationContextEnabled: true, mobileEmulationEnabled: false, nativeEvents: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: XP, platformName: XP, proxy: Proxy(), rotatable: false, setWindowRect: true, strictFileInteractability: false, takesHeapSnapshot: true, takesScreenshot: true, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unexpectedAlertBehaviour: ignore, unhandledPromptBehavior: ignore, version: 74.0.3729.131, webStorageEnabled: true}
+Session ID: 4e6315456674aeb1fa9321c59f0a0da6
+*** Element info: {Using=xpath, value=//*[@id='mainForm']//div[13]/button[@aria-label='Add to Estimate']}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:214)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:166)
+	at org.openqa.selenium.remote.http.JsonHttpResponseCodec.reconstructValue(JsonHttpResponseCodec.java:40)
+	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:80)
+	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:44)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+	at com.sun.proxy.$Proxy20.click(Unknown Source)
+	at page.CalculatorPage.fillThiredAND(CalculatorPage.java:217)
+	at test.CloudGoogleDefs.iFilledTheFieldAndClickButtonToEstimate(CloudGoogleDefs.java:79)
+	at ?.And I filled the field "2x375_GB","Frankfurt_(europe-west3)","1_Year" and click Button to Estimate(src/test/resources/features/Cloud.feature:19)
+
+org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@id='mainForm']//div[13]/button[@aria-label='Add to Estimate']"}
+  (Session info: chrome=74.0.3729.131)
+  (Driver info: chromedriver=74.0.3729.6 (255758eccf3d244491b8a1317aa76e1ce10d57e9-refs/branch-heads/3729@{#29}),platform=Windows NT 10.0.17763 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.0', revision: '2ecb7d9a', time: '2018-10-31T20:09:30'
+System info: host: 'EPBYMINW3610', ip: '10.6.102.64', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_201'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, acceptSslCerts: false, applicationCacheEnabled: false, browserConnectionEnabled: false, browserName: chrome, chrome: {chromedriverVersion: 74.0.3729.6 (255758eccf3d24..., userDataDir: C:\Users\GLEB_T~1\AppData\L...}, cssSelectorsEnabled: true, databaseEnabled: false, goog:chromeOptions: {debuggerAddress: localhost:55364}, handlesAlerts: true, hasTouchScreen: false, javascriptEnabled: true, locationContextEnabled: true, mobileEmulationEnabled: false, nativeEvents: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: XP, platformName: XP, proxy: Proxy(), rotatable: false, setWindowRect: true, strictFileInteractability: false, takesHeapSnapshot: true, takesScreenshot: true, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unexpectedAlertBehaviour: ignore, unhandledPromptBehavior: ignore, version: 74.0.3729.131, webStorageEnabled: true}
+Session ID: af81f93f0c213b6870fb43a65ed5f91e
+*** Element info: {Using=xpath, value=//*[@id='mainForm']//div[13]/button[@aria-label='Add to Estimate']}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:214)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:166)
+	at org.openqa.selenium.remote.http.JsonHttpResponseCodec.reconstructValue(JsonHttpResponseCodec.java:40)
+	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:80)
+	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:44)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+	at com.sun.proxy.$Proxy20.click(Unknown Source)
+	at page.CalculatorPage.fillThiredAND(CalculatorPage.java:217)
+	at test.CloudGoogleDefs.iFilledTheFieldAndClickButtonToEstimate(CloudGoogleDefs.java:79)
+	at ?.And I filled the field "2x375_GB","Frankfurt_(europe-west3)","1_Year" and click Button to Estimate(src/test/resources/features/Cloud.feature:34)
 
 
 ===============================================
 Default Suite
-Total tests run: 1, Failures: 0, Skips: 0
+Total tests run: 1, Failures: 1, Skips: 0
 ===============================================
 
