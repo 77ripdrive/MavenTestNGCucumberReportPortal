@@ -1,0 +1,112 @@
+Feature: Cloud
+  as a Google Cloud user
+  I want to calculate the cost of the service with certain parameters
+  and view available services
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+May 16, 2019 11:54:29 AM java.util.prefs.WindowsPreferences <init>
+WARNING: Could not open/create prefs root node Software\JavaSoft\Prefs at root 0x80000002. Windows RegCreateKeyEx(...) returned error code 5.
+Starting ChromeDriver 74.0.3729.6 (255758eccf3d244491b8a1317aa76e1ce10d57e9-refs/branch-heads/3729@{#29}) on port 30857
+Only local connections are allowed.
+Please protect ports used by ChromeDriver and related test frameworks to prevent access by malicious code.
+May 16, 2019 11:54:32 AM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: OSS
+[11:54:37] INFO  (MyLogger.java) - MainCloudPage openedhttps://cloud.google.com
+
+  Background:                      # src/test/resources/features/Cloud.feature:6
+    Given I open Cloud Google page # CloudGoogleDefs.iOpenCloudGooglePage()
+
+  Scenario: See logo Customer    # src/test/resources/features/Cloud.feature:10
+    Then I should see logo Roche # CloudGoogleDefs.iShouldSeeLogoRoche()
+
+  Scenario Outline: The estimated amount equals input                                                         # src/test/resources/features/Cloud.feature:13
+    And I open Products page
+    And I open Pricing page
+    And I open Calculator page
+    When I filled the field   "<numberOfInstance>","<whatInstunceFor>","<softWare>" in table
+    And I filled the field "<vMClass>","<instanceType>","<numberGPU>","<gPUType>"
+    And I filled the field "<localSSD>","<dataCenterLocation>","<commitedUsage>" and click Button to Estimate
+    Then I should see  message  equal to "Total Estimated Cost: USD 1,187.77 per 1 month"
+
+    Examples: 
+Starting ChromeDriver 74.0.3729.6 (255758eccf3d244491b8a1317aa76e1ce10d57e9-refs/branch-heads/3729@{#29}) on port 22054
+Only local connections are allowed.
+Please protect ports used by ChromeDriver and related test frameworks to prevent access by malicious code.
+May 16, 2019 11:54:41 AM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: OSS
+[11:54:45] INFO  (MyLogger.java) - MainCloudPage openedhttps://cloud.google.com
+
+  Background:                      # src/test/resources/features/Cloud.feature:6
+    Given I open Cloud Google page # CloudGoogleDefs.iOpenCloudGooglePage()
+[11:54:45] INFO  (MyLogger.java) - Products page openedhttps://cloud.google.com/products/
+[11:54:47] INFO  (MyLogger.java) - Pricing page openedhttps://cloud.google.com/pricing/
+[11:54:52] INFO  (MyLogger.java) - Calculators page opened is :https://cloud.google.com/products/calculator/
+[11:54:54] INFO  (MyLogger.java) - numberGPU is : 1
+[11:54:56] INFO  (MyLogger.java) - gPUType : NVIDIA_Tesla_V100
+[11:54:56] INFO  (MyLogger.java) - setLocacSSD
+[11:54:56] INFO  (MyLogger.java) - localSSD is :  2x375_GB
+[11:54:58] INFO  (MyLogger.java) - setCommitedUsage is :1_Year
+[11:54:58] INFO  (MyLogger.java) - Estimate is complete
+
+  Scenario Outline: The estimated amount equals input                                                               # src/test/resources/features/Cloud.feature:24
+    And I open Products page                                                                                        # CloudGoogleDefs.iOpenProductsPage()
+    And I open Pricing page                                                                                         # CloudGoogleDefs.iOpenPricingPage()
+    And I open Calculator page                                                                                      # CloudGoogleDefs.iOpenCalculatorPage()
+    When I filled the field   "4","none","Free:_Debian,_CentOS,_CoreOS,_Ubuntu,_or_other_User_Provided_OS" in table # CloudGoogleDefs.iFilledTheFieldInTable(String,String,String)
+    And I filled the field "Regular","CP-COMPUTEENGINE-VMIMAGE-N1-STANDARD-8","1","NVIDIA_Tesla_V100"               # CloudGoogleDefs.iFilledTheField(String,String,String,String)
+    And I filled the field "2x375_GB","Frankfurt_(europe-west3)","1_Year" and click Button to Estimate              # CloudGoogleDefs.iFilledTheFieldAndClickButtonToEstimate(String,String,String)
+    Then I should see  message  equal to "Total Estimated Cost: USD 1,187.77 per 1 month"                           # CloudGoogleDefs.iShouldSeeMessageEqualTo(String)
+
+  Scenario Outline: Email from Google Cloud with certain parameters                                           # src/test/resources/features/Cloud.feature:28
+    And I open Products page
+    And I open Pricing page
+    And I open Calculator page
+    When I filled the field   "<numberOfInstance>","<whatInstunceFor>","<softWare>" in table
+    And I filled the field "<vMClass>","<instanceType>","<numberGPU>","<gPUType>"
+    And I filled the field "<localSSD>","<dataCenterLocation>","<commitedUsage>" and click Button to Estimate
+    Then I should see price in letter is equal with price on calculator page
+
+    Examples: 
+Starting ChromeDriver 74.0.3729.6 (255758eccf3d244491b8a1317aa76e1ce10d57e9-refs/branch-heads/3729@{#29}) on port 24463
+Only local connections are allowed.
+Please protect ports used by ChromeDriver and related test frameworks to prevent access by malicious code.
+May 16, 2019 11:55:02 AM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: OSS
+[11:55:06] INFO  (MyLogger.java) - MainCloudPage openedhttps://cloud.google.com
+
+  Background:                      # src/test/resources/features/Cloud.feature:6
+    Given I open Cloud Google page # CloudGoogleDefs.iOpenCloudGooglePage()
+[11:55:06] INFO  (MyLogger.java) - Products page openedhttps://cloud.google.com/products/
+[11:55:08] INFO  (MyLogger.java) - Pricing page openedhttps://cloud.google.com/pricing/
+[11:55:12] INFO  (MyLogger.java) - Calculators page opened is :https://cloud.google.com/products/calculator/
+[11:55:14] INFO  (MyLogger.java) - numberGPU is : 1
+[11:55:15] INFO  (MyLogger.java) - gPUType : NVIDIA_Tesla_V100
+[11:55:15] INFO  (MyLogger.java) - setLocacSSD
+[11:55:16] INFO  (MyLogger.java) - localSSD is :  2x375_GB
+[11:55:17] INFO  (MyLogger.java) - setCommitedUsage is :1_Year
+[11:55:18] INFO  (MyLogger.java) - Estimate is complete
+[11:55:21] INFO  (MyLogger.java) - TenMinuteMailPage openedhttps://10minutemail.net
+[11:55:22] INFO  (MyLogger.java) - Move to 10minute : whr52905@cndps.com
+[11:55:22] INFO  (MyLogger.java) - Wait for GoogleEmail
+[11:56:12] INFO  (MyLogger.java) - Email from GoogleCloud with Total Coast is checked USD 1,187.77
+
+  Scenario Outline: Email from Google Cloud with certain parameters                                                 # src/test/resources/features/Cloud.feature:38
+    And I open Products page                                                                                        # CloudGoogleDefs.iOpenProductsPage()
+    And I open Pricing page                                                                                         # CloudGoogleDefs.iOpenPricingPage()
+    And I open Calculator page                                                                                      # CloudGoogleDefs.iOpenCalculatorPage()
+    When I filled the field   "4","none","Free:_Debian,_CentOS,_CoreOS,_Ubuntu,_or_other_User_Provided_OS" in table # CloudGoogleDefs.iFilledTheFieldInTable(String,String,String)
+    And I filled the field "Regular","CP-COMPUTEENGINE-VMIMAGE-N1-STANDARD-8","1","NVIDIA_Tesla_V100"               # CloudGoogleDefs.iFilledTheField(String,String,String,String)
+    And I filled the field "2x375_GB","Frankfurt_(europe-west3)","1_Year" and click Button to Estimate              # CloudGoogleDefs.iFilledTheFieldAndClickButtonToEstimate(String,String,String)
+    Then I should see price in letter is equal with price on calculator page                                        # CloudGoogleDefs.iShouldSeePriceInLetterIsEqualWithPriceOnCalculatorPage()
+
+3 Scenarios (3 passed)
+18 Steps (18 passed)
+1m43.773s
+
+
+===============================================
+Default Suite
+Total tests run: 1, Failures: 0, Skips: 0
+===============================================
+

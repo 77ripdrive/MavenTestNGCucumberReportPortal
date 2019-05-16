@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 
 public class TenMinuteMailPage extends AbstractPage {
 
-    protected final int WAIT_TIMEOUT_SECONDS_FOR= 10;
+    protected final int WAIT_TIMEOUT_SECONDS_FOR_MAIL= 45;
     private final String BASE_URL = "https://10minutemail.net";
 
     private Actions actions = new Actions(driver);
@@ -37,7 +37,7 @@ public class TenMinuteMailPage extends AbstractPage {
         MyLogger.info("Wait for GoogleEmail");
 
         try {
-            TimeUnit.SECONDS.sleep(WAIT_TIMEOUT_SECONDS_FOR);
+            TimeUnit.SECONDS.sleep(WAIT_TIMEOUT_SECONDS_FOR_MAIL);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

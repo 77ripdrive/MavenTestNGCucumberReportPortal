@@ -10,17 +10,21 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import driver.DriverSingleton;
 import org.apache.commons.io.FileUtils;
-import org.junit.Assert;
+
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
+import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import page.*;
 import reporting.MyLogger;
+import util.TestListener;
 
 import java.io.File;
 import java.io.IOException;
 
+@Listeners({TestListener.class})
 public class CloudGoogleDefs {
 
     protected WebDriver driver;
@@ -85,7 +89,7 @@ public class CloudGoogleDefs {
     @Then("^I should see  message  equal to \"([^\"]*)\"$")
     public void iShouldSeeMessageEqualTo(String estimateTable) {
         totalEstimateTable=calculatorPage.getTotalEstimatedCost();
-        Assert.assertTrue(estimateTable.contains(totalEstimateTable));
+       Assert.assertTrue(estimateTable.contains(totalEstimateTable));
 
     }
     @Then("^I should see price in letter is equal with price on calculator page$")

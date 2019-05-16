@@ -15,7 +15,7 @@ public class MainCloudPage extends AbstractPage {
 
 
     @FindBy(xpath = "//a[@track-name='seeProducts']")
-    public WebElement exploreAllProductsButton;
+    private WebElement exploreAllProductsButton;
 
 
     @FindBy(xpath = "//*[@alt='Roche logo']")
