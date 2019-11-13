@@ -11,4 +11,3 @@ BDD_Cucumber branch
 
 mvn -Dbrowser=chrome 
 
-https://github.com/ashenwgt/awesome-bdd-with-cucumber
