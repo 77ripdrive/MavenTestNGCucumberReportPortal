@@ -1,13 +1,8 @@
-Java
-==       project  --->:
+# Maven TestNG Cucumber ReportPortal 
 
-
-
-run NOW  in 
+ run NOW  in 
  mvn -Dbrowser=chrome  clean test
 
-
-BDD_Cucumber branch
-
-mvn -Dbrowser=chrome 
+ BDD_Cucumber branch
+ 
 
